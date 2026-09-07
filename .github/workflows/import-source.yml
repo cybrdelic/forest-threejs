@@ -1,0 +1,35 @@
+name: Import verified restored source
+on:
+  push:
+    branches: [master]
+    paths: ['publication/baseline/**', 'publication/import_baseline.py', '.github/workflows/import-source.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: source-import-master
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: master
+          fetch-depth: 1
+      - name: Verify and extract original source
+        run: python3 publication/import_baseline.py
+      - name: Build native renderer
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build -j2
+      - name: Exercise native numerical tests
+        run: ctest --test-dir build --output-on-failure
+      - name: Commit readable source after successful tests
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CMakeLists.txt requirements.txt src tests tools reports/source-import.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Import verified native forest renderer and numerical tests'
+            git push origin HEAD:master
+          fi

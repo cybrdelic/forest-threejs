@@ -1,0 +1,10 @@
+build*/
+__pycache__/
+*.pyc
+renders/
+*.accum
+*.film
+*.pfm
+*.ppm
+*.tmp
+.venv/
