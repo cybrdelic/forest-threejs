@@ -1,0 +1,107 @@
+{
+  "archive_sha256": "e9ae5ceb0421fb64614ec37c52e48da2c2fd3da4a2c3a26a359cafbd864be5a4",
+  "files": [
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "56406564e1ebd238693f0ad93a3d6c2b39e1e1b6f3b24ae6284db6fd56b66c16",
+      "bytes": 2008
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "f84c67108ded5ffec8e9a2d5bf96e331f11ccbe4a7e45e9e7c2883e12c06740e",
+      "bytes": 176
+    },
+    {
+      "path": "src/cache_main.cpp",
+      "sha256": "cc025cf59277921a35a272ebdf3c9b8a4a6c77ed68b83e3aa0d742da4ce9a7f7",
+      "bytes": 1188
+    },
+    {
+      "path": "src/cinema.hpp",
+      "sha256": "c9ba048059b1b36e17d6ba2fc112550e2e8607507a4a40ef1ac74b51eb90ebb3",
+      "bytes": 6170
+    },
+    {
+      "path": "src/film.cpp",
+      "sha256": "22cf932dff80977236e8c2376e945191614c20df633860c6f7cf50a54dc7c49d",
+      "bytes": 18109
+    },
+    {
+      "path": "src/finish.py",
+      "sha256": "4198e3d0e0a96e24e41431093ab93dc36a9d9fe6feef25525e55b513d03fc913",
+      "bytes": 3272
+    },
+    {
+      "path": "src/integrator.cpp",
+      "sha256": "fc6e3460ef265183a889a551eeba381963d02e0836c68978131581cdc7d99496",
+      "bytes": 15259
+    },
+    {
+      "path": "src/integrator.hpp",
+      "sha256": "42e11b9308fa87f9c97898332c166f7bab3f3f06f321f2aaf4240d2155cde1a0",
+      "bytes": 1481
+    },
+    {
+      "path": "src/lightcache.cpp",
+      "sha256": "a1bcbae61513346a6984e5633ad9e1dec4c3ed750650d70ba25a962a33d877f4",
+      "bytes": 16622
+    },
+    {
+      "path": "src/lightcache.hpp",
+      "sha256": "276f7801afede97501111609e08e2ccf2ebed4402bbb08327532f024ca7e3afc",
+      "bytes": 2885
+    },
+    {
+      "path": "src/main.cpp",
+      "sha256": "094ca9a3adcbbc29e1cad0f7d4efcb1dcd1b121b344d590e6f6fe5875a77694e",
+      "bytes": 23801
+    },
+    {
+      "path": "src/math.hpp",
+      "sha256": "d8d8b3c9cbf70b16e825d83cf91e100311000ee3a2f09cc5f4168eec97a3f41c",
+      "bytes": 8303
+    },
+    {
+      "path": "src/prepare_scene.py",
+      "sha256": "66fdc4426e24a286fff589a5c87e12c2b69ec892befd332a546ede48a215052a",
+      "bytes": 18146
+    },
+    {
+      "path": "src/scene.cpp",
+      "sha256": "169c5d6ba7c96584f084f0f7fef2d1f9c857b4ccc72c388477ccc94165e2e481",
+      "bytes": 28848
+    },
+    {
+      "path": "src/scene.hpp",
+      "sha256": "3d8a8c6634bb9b67ae8419207272c9f5398da5ab1dbaca2b5c77162c90e19cc6",
+      "bytes": 3299
+    },
+    {
+      "path": "tests/probe_visibility_pixel.cpp",
+      "sha256": "c78353243711e438717830462f582e24c199a6e34dbbeb2ab826ab9e8511b2b7",
+      "bytes": 995
+    },
+    {
+      "path": "tests/test_bvh.cpp",
+      "sha256": "cfc392ea499af9df176ba027410f703cf2501683ee1f5c27a2190d122174c92e",
+      "bytes": 8321
+    },
+    {
+      "path": "tests/test_cinema.cpp",
+      "sha256": "707d9cc15c6815ed1e136d1eae57216946e5040b37425b86f7d0d0f99a98ddb1",
+      "bytes": 6262
+    },
+    {
+      "path": "tools/render_restored.py",
+      "sha256": "626a938fd20ed02b46af8174049e24c679919489b68f54dfe9ad7d6f78b00e63",
+      "bytes": 8966
+    },
+    {
+      "path": "tools/restore_original.py",
+      "sha256": "b7cbf96039c5b07035c053717ad6b6ad1b5ca23f98790a35052fca9893c8912f",
+      "bytes": 4716
+    }
+  ],
+  "source": "restored native C++ renderer",
+  "binary_scene_and_movies_uploaded": false
+}
