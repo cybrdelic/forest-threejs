@@ -1,15 +1,38 @@
 # CYBR FOREST
 
-Native C++20 rendering and procedural vegetation built from the restored CYBR VEG forest. This repository keeps the original 3D scene separate from the higher-detail upgrade.
+Native C++20 rendering and procedural vegetation from the restored CYBR VEG forest. The repository name is historical: the rendered footage uses the native renderer, not a claimed Three.js backend.
+
+![Actual restored 3D forest, small animated thumbnail](media/gifs/restored_thumbnail.gif)
+
+The animation above is a **96 x 54, four-frame contact thumbnail extracted from the actual restored movie**, not the full-resolution movie and not an image-generated reference.
+
+## Baseline
+
+The original forest contains 25 mesh buffers and 9,810 placed mesh instances. The accepted restored movie contains two moving-camera shots, 96 frames at 1920 x 1080 / 24 fps, four seconds total. Trees are static in that recovery. Diffuse illumination is cached and the volume treatment is approximate; these movies are not certified fully converged path tracing.
+
+The original GPL-2.0 license is retained. The working geometry must remain separate from subsequent higher-detail changes. Generated reference pictures, the rejected Python 2.5D replacement, failure-only reports and nonexistent artifacts are not production renders.
 
 ## Publication status
 
-The original GPL-2.0 license is retained. Source and media are being imported from the recovered project. Binary scene/media transfer is not complete; the presence of this README does not mean the films or GLB have been uploaded.
+The native renderer, numerical tests and restoration tools are committed. The actual small GIF above has been uploaded and its Git blob hash verified. **The full-resolution movie, the full GIF collection and binary scene assets have not yet been transferred to this repository.** A prepared publication bundle contains 26 video entries, 27 GIF previews and eight still images, plus original scene/material data and provenance. Preparation is not upload completion.
 
-The restored baseline is a 4-second, 1920 x 1080, 24 fps, two-shot native-code render. Its forest geometry is real triangles and instances; it is not the rejected 2.5D replacement. Its diffuse cache and approximate volumetrics do not establish full path-tracing convergence.
+`reports/publication-status.json` describes this boundary. The separate media import tool only accepts a checksum-verified bundle; it never executes downloaded code. Its future success report is not created until every listed file matches its manifest.
 
-## Quality targets
+## Build and test
 
-Preserve original geometry; repair normals and tangent frames; invalidate lighting and accumulation using all dependencies; rebuild connected foreground trees, divided fern fronds and hollow fallen logs; improve texture minification; verify uncached sunlight/skylight passes and moving-camera renders before extending the film.
+```sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel 4
+ctest --test-dir build --output-on-failure
+```
 
-Generated reference pictures, rejected 2.5D footage, missing-file reports and uncreated artifacts are not production renders and are excluded from the render gallery.
+To reproduce the restored scene, the original `CYBR_FOREST.glb` must be present at `assets/input/CYBR_FOREST.glb`. Use the restoration driver rather than assuming an absent scene exists:
+
+```sh
+python -m pip install -r requirements.txt
+python tools/render_restored.py --frames 48 --width 1920 --height 1080 --samples 4
+```
+
+## Higher-detail upgrade
+
+The baseline is preserved first. Subsequent work must repair deformation normals and tangent frames, fingerprint all lighting/material/cache dependencies, improve texture minification, rebuild foreground trees, divided fern fronds and hollow fallen logs, and test uncached lighting and moving-camera renders. Passing compilation or decoding is not proof of AAA visual quality or radiometric convergence.

@@ -1,0 +1,22 @@
+{
+  "schema": "cybr-forest-publication-status-v2",
+  "baseline_source_commit": "87fe064d654f624c2f807500e96c58695f76beab",
+  "original_glb_sha256": "97ef278fe653664e643e6a9c8bf07f6dd2566bd2da1e3299a92e5118dc660110",
+  "original_movie_sha256": "d95cfcca029fa04bf8d53d4166b4eba7766c085d4b2f4d461e1ae6fe29a26759",
+  "uploaded_thumbnail": {
+    "path": "media/gifs/restored_thumbnail.gif",
+    "width": 96,
+    "height": 54,
+    "frames": 4,
+    "bytes": 9184,
+    "sha256": "1d2ab5a85b10c014bbe62468e05d6af7f6770639964b0b028ef9872c40e2f721",
+    "git_blob_sha": "65254b2dd6931130814eba2e6245d24cc8e03cc0"
+  },
+  "prepared_video_entries": 26,
+  "prepared_gif_entries": 27,
+  "prepared_stills": 8,
+  "full_binary_media_transferred": false,
+  "scene_binary_transferred": false,
+  "full_convergence_certified": false,
+  "note": "This report deliberately does not equate prepared local files with uploaded GitHub files."
+}

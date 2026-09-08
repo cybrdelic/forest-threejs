@@ -1,0 +1,16 @@
+name: Native renderer tests
+on:
+  push:
+    paths: ['src/**', 'tests/**', 'tools/**', 'CMakeLists.txt', '.github/workflows/native-tests.yml']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build --parallel 2
+      - run: ctest --test-dir build --output-on-failure
