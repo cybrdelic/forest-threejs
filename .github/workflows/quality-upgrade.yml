@@ -1,0 +1,35 @@
+name: Materialize and verify native quality upgrade
+on:
+  push:
+    paths: ['publication/quality/**', 'publication/apply_quality.py', '.github/workflows/quality-upgrade.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: quality-source-import
+  cancel-in-progress: false
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 1
+      - name: Verify source payload and baseline, apply exact readable changes
+        run: python publication/apply_quality.py
+      - run: cmake -S . -B build-quality -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build-quality --parallel 2
+      - run: ctest --test-dir build-quality --output-on-failure
+      - run: python -m py_compile tools/build_quality_scene.py tools/quality_validation.py tools/quality_film.py tools/import_media_bundle.py
+      - name: Publish tested readable implementation without forcing history
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CMakeLists.txt requirements.txt src tests/test_quality.cpp tools/build_quality_scene.py tools/quality_validation.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Implement verified foreground geometry, native transport fingerprints, mip filtering, wind and film validation'
+            git push origin HEAD:master
+          fi
