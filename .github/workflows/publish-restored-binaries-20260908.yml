@@ -1,0 +1,120 @@
+name: Publish restored forest assets
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/publish-restored-binaries-20260908.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: forest-restored-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Download and verify exact restored project
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/forest-import
+          curl --fail --location --retry 3 --connect-timeout 20 --max-time 900 'https://filebin.net/cybr-forest-20260908-a81d9e36f0e1/restored-project.zip' -o /tmp/forest-import/restored-project.zip
+          echo '772722f415403219d8be03210f31d8ae515f9475b571878814e294371af1d0c1  /tmp/forest-import/restored-project.zip' | sha256sum -c -
+      - name: Import original assets without overwriting the renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, shutil, zipfile
+          from pathlib import Path
+          temp = Path('/tmp/forest-import')
+          extracted = temp / 'extracted'
+          extracted.mkdir(exist_ok=True)
+          with zipfile.ZipFile(temp / 'restored-project.zip') as archive:
+              damaged = archive.testzip()
+              if damaged:
+                  raise RuntimeError('Damaged archive member: ' + damaged)
+              for member in archive.infolist():
+                  p = (extracted / member.filename).resolve()
+                  if not p.is_relative_to(extracted.resolve()):
+                      raise RuntimeError('Unsafe archive path')
+              archive.extractall(extracted)
+          roots = sorted(extracted.rglob('CMakeLists.txt'), key=lambda p: len(p.parts))
+          if not roots:
+              raise RuntimeError('The restored native build source is absent')
+          root = roots[0].parent
+          destination = Path('baseline/restored')
+          files, oversized = [], []
+          ignored = {'.git', '__pycache__', 'node_modules', '.venv', 'build', 'build-asan'}
+          for source in sorted(root.rglob('*')):
+              if not source.is_file() or ignored.intersection(source.relative_to(root).parts):
+                  continue
+              relative = source.relative_to(root)
+              digest = hashlib.sha256(source.read_bytes()).hexdigest()
+              record = {'path': str(relative), 'bytes': source.stat().st_size, 'sha256': digest}
+              if source.stat().st_size >= 100_000_000:
+                  oversized.append(record)
+                  continue
+              target = destination / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source, target)
+              files.append(record)
+          videos = [p for p in extracted.rglob('*.mp4') if hashlib.sha256(p.read_bytes()).hexdigest() == 'd95cfcca029fa04bf8d53d4166b4eba7766c085d4b2f4d461e1ae6fe29a26759']
+          if not videos:
+              raise RuntimeError('The original restored movie was not found in the verified project archive')
+          media = Path('media/restored')
+          media.mkdir(parents=True, exist_ok=True)
+          shutil.copy2(videos[0], media / 'restored_3d_1080p.mp4')
+          Path('validation').mkdir(exist_ok=True)
+          Path('validation/restored_publication.json').write_text(json.dumps({'source_archive_sha256': '772722f415403219d8be03210f31d8ae515f9475b571878814e294371af1d0c1', 'copied': files, 'release_archive_only': oversized, 'film_sha256': 'd95cfcca029fa04bf8d53d4166b4eba7766c085d4b2f4d461e1ae6fe29a26759', 'image_generation_used': False, 'aaa_upgrade': False, 'fully_converged': False}, indent=2) + '\n')
+          PY
+      - name: Verify movie and create real GIF previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          mkdir -p media/gifs media/stills
+          ffmpeg -v error -i media/restored/restored_3d_1080p.mp4 -f null -
+          ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=width,height,nb_read_frames,r_frame_rate:format=duration -of json media/restored/restored_3d_1080p.mp4 > validation/restored_movie_probe.json
+          python - <<'PY'
+          import json
+          p=json.load(open('validation/restored_movie_probe.json'))
+          s=p['streams'][0]
+          assert (s['width'],s['height'],int(s['nb_read_frames']),s['r_frame_rate']) == (1920,1080,96,'24/1'), s
+          PY
+          ffmpeg -y -v error -i media/restored/restored_3d_1080p.mp4 -filter_complex '[0:v]fps=12,scale=640:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3' -loop 0 media/gifs/restored_3d.gif
+          ffmpeg -y -v error -ss 1 -i media/restored/restored_3d_1080p.mp4 -frames:v 1 media/stills/restored_3d.jpg
+          cat > media/README.md <<'EOF'
+          # Actual CYBR FOREST renders
+
+          ![Restored native forest](gifs/restored_3d.gif)
+
+          [Restored 1080p two-shot movie](restored/restored_3d_1080p.mp4)
+
+          This is the preserved restored baseline, not a new AAA upgrade. It contains 96 original rendered frames at 1920 × 1080 and 24 fps. The GIF is derived from that movie. The renderer uses cached diffuse transport and approximate volumetrics; no fully converged claim is made. Generated reference images and the rejected 2.5D replacement are not included.
+
+          The complete original project is also attached to the `restored-20260908` GitHub release. `validation/restored_publication.json` lists copied files and any large files available only in that archive.
+          EOF
+      - name: Publish exact archive and baseline commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add baseline/restored media validation/restored_publication.json validation/restored_movie_probe.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish checksum-verified original forest assets, 1080p film, GIF and source baseline'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          if ! gh release view restored-20260908 >/dev/null 2>&1; then
+            gh release create restored-20260908 --target master --title 'CYBR FOREST: preserved restored 3D baseline' --notes 'Original restored native C++20 project and genuine 1080p footage. SHA-256-verified original assets; no AAA or full convergence claim. See validation/restored_publication.json and media/README.md.'
+          fi
+          gh release upload restored-20260908 /tmp/forest-import/restored-project.zip media/restored/restored_3d_1080p.mp4 media/gifs/restored_3d.gif --clobber
