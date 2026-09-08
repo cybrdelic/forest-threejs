@@ -20,13 +20,13 @@ inline const std::vector<Shot>& shots() {
     // These are world-space camera moves, not transforms on a rendered image.
     static const std::vector<Shot> s = {
         {"01_Threshold", {.35f,1.70f,-12.0f},{-.35f,1.77f,-9.2f}, {.5f,2.3f,15},{.5f,2.4f,15},49},
-        {"02_Fern_level", {-.85f,.64f,-5.3f},{-.2f,.80f,-3.6f}, {-3.9f,1.02f,1.3f},{-3.1f,1.22f,3.1f},47},
+        {"02_Fern_level", {-.35f,1.36f,-7.6f},{.15f,1.45f,-6.1f}, {-2.6f,.88f,-2.8f},{-2.3f,.97f,-1.8f},45},
         {"03_Trunk_parallax", {1.4f,1.90f,-6.8f},{-.6f,2.00f,-5.8f}, {5.7f,4.8f,8.2f},{5.4f,5.2f,10.6f},52},
         {"04_Into_the_light", {-.65f,1.65f,1.0f},{.3f,1.75f,4.2f}, {1.8f,2.7f,23},{2.8f,3.1f,24},49},
-        {"05_Fern_close_pass", {-.2f,.69f,-3.2f},{.3f,.77f,-1.7f}, {-3.6f,.65f,-.3f},{-3.0f,.83f,1.2f},43},
+        {"05_Fern_close_pass", {-.25f,1.2f,-7.0f},{.25f,1.35f,-5.7f}, {-2.5f,.88f,-2.5f},{-2.5f,1.00f,-1.4f},39},
         {"06_Under_the_crown", {-.6f,2.1f,-5.5f},{.6f,3.0f,-3.7f}, {-1.5f,15.0f,3.5f},{.6f,19.5f,5.0f},59},
         {"07_Cross_the_glade", {.35f,1.95f,9.0f},{-.20f,2.05f,11.0f}, {-9.0f,3.3f,27.0f},{-7.6f,3.6f,28.0f},53},
-        {"08_Fallen_timber", {-1.1f,1.28f,-6.5f},{-.1f,1.38f,-4.7f}, {-5.2f,1.7f,3.5f},{-4.9f,1.9f,4.2f},41},
+        {"08_Fallen_timber", {-.65f,2.15f,-2.1f},{-.20f,2.3f,-.65f}, {-4.6f,.75f,3.6f},{-4.7f,.76f,3.6f},42},
         {"09_Midstory_crane", {.1f,5.6f,-2.8f},{1.3f,8.1f,-.8f}, {1.1f,7.8f,20},{1.8f,10.0f,23},53},
         {"10_Canopy_drift", {-2.4f,27.0f,-5.0f},{.8f,28.0f,-2.0f}, {-.8f,19.5f,4.0f},{1.8f,20.5f,8.0f},57},
         {"11_Overhead", {-2.5f,32.5f,-4.0f},{1.5f,33.0f,-.5f}, {-.2f,2.5f,4.0f},{1.7f,3.2f,7.0f},52},
@@ -48,7 +48,9 @@ struct FastCamera {
         ty=std::tan(c.fov*Pi/360.f); tx=ty*width/height;
     }
     Ray ray(float x,float y) const {
-        return Ray(eye,normalize(fw+right*((2*x/w-1)*tx)+up*((1-2*y/h)*ty)));
+        Ray ray(eye,normalize(fw+right*((2*x/w-1)*tx)+up*((1-2*y/h)*ty)));
+        ray.coneSpread = 2*ty/float(h);
+        return ray;
     }
 };
 // Conservative pinhole frustum culling for primary camera rays only.

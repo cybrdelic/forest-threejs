@@ -43,7 +43,7 @@ void IrradianceCache::add(const Surface& s){
     }
 }
 void IrradianceCache::gather(const Integrator& in,int first,int last,int cameraSteps,int threads){
-    fingerprint=in.scene.fingerprint;constexpr int w=160,h=90;
+    fingerprint=in.transportFingerprint();constexpr int w=160,h=90;
     for(int shot=first;shot<=last;shot++){
         auto start=std::chrono::steady_clock::now();
         for(int t=0;t<cameraSteps;t++){
@@ -162,7 +162,7 @@ void IrradianceCache::report(const std::filesystem::path& path)const{
       <<",\n\"luminance_floor\":0.03,\n\"full_film_convergence_certified\":false,\n\"limitations\":\"Sampling estimates exclude spatial interpolation, simplified indirect Fresnel, omitted indirect glossy response and the separate volume approximation.\"\n}\n";
 }
 void VolumeGrid::build(const Integrator& original,int threads){
-    fingerprint=original.scene.fingerprint;
+    fingerprint=original.transportFingerprint();
     nx=int(std::ceil((hi.x-lo.x)/spacing))+1;ny=int(std::ceil((hi.y-lo.y)/spacing))+1;nz=int(std::ceil((hi.z-lo.z)/spacing))+1;
     solar.assign(size_t(nx)*ny*nz,0);auto start=std::chrono::steady_clock::now();
     parallel(nz,threads,[&](int z){for(int y=0;y<ny;y++)for(int x=0;x<nx;x++){

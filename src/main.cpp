@@ -234,7 +234,7 @@ namespace cybr {
         integrator.maxDepth = o.depth;
         integrator.lights.extinction = o.fog;
         Camera camera = shotCamera(scene, o);
-        uint64_t sig = signature(o, camera, scene);
+        uint64_t sig = hash64(signature(o, camera, scene) ^ integrator.transportFingerprint());
         Film film(o.width, o.height);
         if (o.resume) restore(film, o.out.string() + ".accum", sig);
         auto start = std::chrono::steady_clock::now();

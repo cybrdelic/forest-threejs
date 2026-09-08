@@ -8,7 +8,7 @@ int main(int argc,char**argv){try{
     if(mode=="gather"){
         IrradianceCache cache;cache.cell=1;cache.gather(in,0,11,12,threads);cache.save(assets/"forest.irr");
     }else if(mode=="bake"){
-        IrradianceCache cache;cache.load(assets/"forest.irr",scene.fingerprint);cache.build(in,512,samples,.04f,threads,assets/"forest.irr");
+        IrradianceCache cache;cache.load(assets/"forest.irr",in.transportFingerprint());cache.build(in,512,samples,.04f,threads,assets/"forest.irr");
     }else if(mode=="volume"){
         VolumeGrid grid;grid.build(in,threads);grid.save(assets/"forest.vol");
     }else throw std::runtime_error("Unknown mode");

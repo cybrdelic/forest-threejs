@@ -1,4 +1,5 @@
 #include "lightcache.hpp"
+#include "wind.hpp"
 using namespace cybr;
 using namespace cybr::cinema;
 
@@ -8,6 +9,7 @@ struct Args {
     int w=320,h=180,spp=16,threads=4,first=0,last=11,frames=48;
     int cacheMin=512,cacheMax=4096,cameraSteps=12,startFrame=0,endFrame=-1;
     float cell=1.0f,target=.04f,exposure=2.1f;
+    float sunScale=1,skyScale=1,fog=.0038f,wind=0,aperture=0,focus=10,fps=24;
     bool resume=false,pfm=false,temporal=true,uniformCache=false,coherence=true,frustum=true;
 };
 Args parseFilm(int argc,char**argv){
@@ -33,6 +35,13 @@ Args parseFilm(int argc,char**argv){
         else if(k=="--cell")a.cell=std::stof(next());
         else if(k=="--target")a.target=std::stof(next());
         else if(k=="--exposure")a.exposure=std::stof(next());
+        else if(k=="--sun-scale")a.sunScale=std::stof(next());
+        else if(k=="--sky-scale")a.skyScale=std::stof(next());
+        else if(k=="--fog")a.fog=std::stof(next());
+        else if(k=="--wind")a.wind=std::stof(next());
+        else if(k=="--aperture")a.aperture=std::stof(next());
+        else if(k=="--focus")a.focus=std::stof(next());
+        else if(k=="--fps")a.fps=std::stof(next());
         else if(k=="--resume")a.resume=true;
         else if(k=="--pfm")a.pfm=true;
         else if(k=="--no-temporal")a.temporal=false;
@@ -47,6 +56,11 @@ Args parseFilm(int argc,char**argv){
     }
     if(a.assets.empty()||a.out.empty()||a.w<12||a.h<12||a.w>8192||a.h>8192||a.spp<2||a.spp>1000000||a.threads<1||a.threads>128||a.first<0||a.last>11||a.first>a.last||a.frames<1||a.frames>100000||!std::isfinite(a.cell)||a.cell<=0||a.cell>20||a.cacheMin<1||a.cacheMax<a.cacheMin||a.cacheMax>1000000||!std::isfinite(a.target)||a.target<=0||!std::isfinite(a.exposure)||a.exposure<=0||a.cameraSteps<1||a.cameraSteps>1000)
         throw std::runtime_error("Invalid options");
+    for(float v:{a.sunScale,a.skyScale,a.fog,a.wind,a.aperture,a.focus,a.fps})if(!std::isfinite(v))throw std::runtime_error("Nonfinite film parameter");
+    if(a.sunScale<0||a.skyScale<0||a.fog<0||a.wind<0||a.wind>3||a.aperture<0||a.aperture>.1f||a.focus<=0||a.fps<=0)throw std::runtime_error("Invalid film parameter range");
+    // No motion-vector history exists for deformed surfaces or lens samples.
+    if(a.wind>0||a.aperture>0)a.temporal=false;
+    if(a.aperture>0)a.frustum=false;
     if(a.resume&&a.temporal&&a.mode=="film")throw std::runtime_error("Temporal renders must restart a complete shot; select --first/--last or use --no-temporal.");
     if(a.endFrame<0)a.endFrame=a.frames;
     if(a.startFrame<0||a.startFrame>=a.endFrame||a.endFrame>a.frames)throw std::runtime_error("Invalid frame interval");
@@ -122,16 +136,17 @@ void writeFrameReport(const std::filesystem::path& path,const Args&a,int shot,in
      <<",\n\"cache_lookups\":"<<d.cacheLookups<<",\n\"cache_misses\":"<<d.cacheMisses
      <<",\n\"nonfinite_samples\":"<<d.nonfinite<<",\n\"seconds\":"<<d.seconds
      <<",\n\"temporal_filter\":"<<(cached&&a.temporal&&a.mode!="still"?"true":"false")
-     <<",\n\"history_acceptance\":"<<d.historyAcceptance<<",\n\"geometry_animated\":false"
+     <<",\n\"history_acceptance\":"<<d.historyAcceptance<<",\n\"geometry_animated\":"<<(a.wind>0?"true":"false")<<""
      <<",\n\"camera_animated\":"<<((a.mode=="film"||a.mode=="uncached-film")?"true":"false")
+     <<",\n\"wind_strength\":"<<a.wind<<",\n\"wind_mechanics_validated\":false,\n\"aperture_radius_m\":"<<a.aperture<<",\n\"shutter_time_sampling\":false,\n\"static_indirect_cache_with_wind\":"<<(cached&&a.wind>0?"true":"false")
      <<",\n\"full_convergence_certified\":false,\n\"note\":\"Camera statistics exclude cache bias and volume discretization error. Correlated subpixel sampling statistics are descriptive, not rigorous confidence bounds. Every frame has new geometry rays; history reprojection is used only for antialiasing.\"\n}\n";
 }
-struct Guide {V3 normal{};float depth=1e5f;uint32_t material=~0u;};
+struct Guide {V3 normal{};float depth=1e5f;uint32_t material=~0u,instance=~0u,face=~0u;};
 std::vector<Guide> makeGuides(const Integrator&in,const FastCamera&cam,int w,int h,int threads,const BVH* tree){
     std::vector<Guide> guides(size_t(w)*h);
     parallel(h,threads,[&](int y){for(int x=0;x<w;x++){
         Ray ray=cam.ray(x+.5f,y+.5f);Hit hit;
-        if(in.scene.intersect(ray,hit,tree)){Surface s=in.scene.surface(ray,hit);guides[size_t(y)*w+x]={s.n,hit.t,s.material};}
+        if(in.scene.intersect(ray,hit,tree)){Surface s=in.scene.surface(ray,hit);guides[size_t(y)*w+x]={s.n,hit.t,s.material,hit.instance,hit.face};}
     }});return guides;
 }
 float temporalResolve(std::vector<V3>&current,const std::vector<Guide>&guides,const FastCamera&cam,
@@ -147,7 +162,7 @@ float temporalResolve(std::vector<V3>&current,const std::vector<Guide>&guides,co
         int ix=int(px),iy=int(py);float u=px-ix,v=py-iy,predicted=length(relative);V3 color{};float weight=0;
         for(int dy=0;dy<2;dy++)for(int dx=0;dx<2;dx++){
             size_t j=size_t(iy+dy)*w+ix+dx;const Guide&b=oldGuides[j];
-            if(b.material!=g.material||dot(b.normal,g.normal)<.97f||std::abs(b.depth-predicted)>.018f+.0012f*predicted)continue;
+            if(b.instance!=g.instance||b.face!=g.face||b.material!=g.material||dot(b.normal,g.normal)<.97f||std::abs(b.depth-predicted)>.018f+.0012f*predicted)continue;
             float k=(dx?u:1-u)*(dy?v:1-v);color+=previous[j]*k;weight+=k;
         }
         if(weight<.25f)continue;
@@ -161,7 +176,8 @@ float temporalResolve(std::vector<V3>&current,const std::vector<Guide>&guides,co
     }accepted+=ok;});
     current.swap(output);return float(accepted)/float(size_t(w)*h);
 }
-void renderCached(const Args&a,const Integrator&in,const IrradianceCache&cache,const VolumeGrid&grid){
+void renderCached(const Args&a,Scene&scene,const Integrator&in,const IrradianceCache&cache,const VolumeGrid&grid){
+    WindState wind(scene);
     for(int shot=a.first;shot<=a.last;shot++){
         auto directory=a.out/shots()[shot].name;std::filesystem::create_directories(directory);
         std::vector<V3> previous;std::vector<Guide> oldGuides;Camera oldCamera;
@@ -173,6 +189,7 @@ void renderCached(const Args&a,const Integrator&in,const IrradianceCache&cache,c
             }
             auto start=std::chrono::steady_clock::now();
             float t=a.mode=="still"?.5f:(a.frames>1?float(frame)/(a.frames-1):.5f);
+            if(a.wind>0)wind.apply(scene,(frame+shot*a.frames)/a.fps,a.wind,a.threads);
             Camera camera=cameraAt(shot,t);FastCamera cam(camera,a.w,a.h);
             BVH cameraTree;if(a.frustum)cameraTree=buildCameraTree(in.scene,cam);
             const BVH* tree=a.frustum?&cameraTree:nullptr;
@@ -189,7 +206,9 @@ void renderCached(const Args&a,const Integrator&in,const IrradianceCache&cache,c
                     for(int s=0;s<a.spp;s++){
                         float u=fract(rx+(s+.5f)*.7548776662f),v=fract(ry+(s+.5f)*.5698402910f);
                         float px=x+u,py=y+v;
-                        V3 value=renderer.shade(cam.ray(px,py),px,py,seed,s+frame*a.spp,localLookups,localMisses,primaryHint,shadowHint);
+                        RNG lens(seedAt(i,s,frame+shot*131+5821));
+                        Ray ray=a.aperture>0?camera.generate(px,py,a.w,a.h,lens,a.aperture,a.focus):cam.ray(px,py);
+                        V3 value=renderer.shade(ray,px,py,seed,s+frame*a.spp,localLookups,localMisses,primaryHint,shadowHint);
                         if(!finite(value)){localBad++;value={};}radiance.add(value);
                     }
                     image[i]=radiance.mean;error[i]=radiance.standardError()/std::max(.03f,luminance(radiance.mean));
@@ -212,7 +231,8 @@ void renderCached(const Args&a,const Integrator&in,const IrradianceCache&cache,c
         }
     }
 }
-void renderReference(const Args&a,const Integrator&in){
+void renderReference(const Args&a,Scene&scene,const Integrator&in){
+    WindState wind(scene);
     bool sequence=a.mode=="uncached-film";
     for(int shot=a.first;shot<=a.last;shot++){
         auto directory=sequence?a.out/shots()[shot].name:a.out;std::filesystem::create_directories(directory);
@@ -220,13 +240,16 @@ void renderReference(const Args&a,const Integrator&in){
         for(int frame=begin;frame<end;frame++){
             auto start=std::chrono::steady_clock::now();
             float time=sequence?(a.frames>1?float(frame)/(a.frames-1):.5f):.5f;
+            if(a.wind>0)wind.apply(scene,(frame+shot*a.frames)/a.fps,a.wind,a.threads);
             Camera camera=cameraAt(shot,time);FastCamera cam(camera,a.w,a.h);
             std::vector<V3> image(size_t(a.w)*a.h);std::vector<float> error(image.size());
             parallel(a.h,a.threads,[&](int y){for(int x=0;x<a.w;x++){
                 size_t i=size_t(y)*a.w+x;RunningRadiance radiance;
                 for(int s=0;s<a.spp;s++){
                     RNG rng(seedAt(i,s,shot*39991+934711));
-                    V3 value=in.trace(cam.ray(x+rng.uniform(),y+rng.uniform()),rng);
+                    float px=x+rng.uniform(),py=y+rng.uniform();
+                    Ray ray=a.aperture>0?camera.generate(px,py,a.w,a.h,rng,a.aperture,a.focus):cam.ray(px,py);
+                    V3 value=in.trace(ray,rng);
                     if(!finite(value))throw std::runtime_error("Nonfinite reference sample");
                     radiance.add(value);
                 }
@@ -241,23 +264,39 @@ void renderReference(const Args&a,const Integrator&in){
         }
     }
 }
+uint64_t jobFingerprint(const Args&a,const Integrator&in){
+    std::ostringstream text;text<<std::setprecision(9)<<in.transportFingerprint()<<'|'<<a.mode<<'|'<<a.w<<'|'<<a.h<<'|'<<a.spp<<'|'<<a.frames<<'|'<<a.exposure<<'|'<<a.wind<<'|'<<a.aperture<<'|'<<a.focus<<'|'<<a.fps<<'|'<<a.temporal<<'|'<<a.coherence<<'|'<<a.frustum;
+    uint64_t h=1469598103934665603ULL;for(unsigned char c:text.str()){h^=c;h*=1099511628211ULL;}return h;
+}
+void guardOutput(const Args&a,const Integrator&in){
+    if(a.mode=="gather"||a.mode=="bake"||a.mode=="volume")return;
+    auto path=a.out/"render.identity";uint64_t id=jobFingerprint(a,in);
+    if(std::filesystem::exists(path)){
+        std::ifstream f(path);uint64_t old=0;f>>old;if(!f||old!=id)throw std::runtime_error("Output fingerprint mismatch; use a new output directory. Old camera/lighting/geometry/wind frames will not be mixed.");
+    }else{
+        if(a.resume&&!std::filesystem::is_empty(a.out))throw std::runtime_error("Unverified legacy frames cannot be resumed without an output fingerprint");
+        std::ofstream f(path);f<<id<<'\n';if(!f)throw std::runtime_error("Cannot write output fingerprint");
+    }
+}
 int main(int argc,char**argv){
     try{
         Args a=parseFilm(argc,argv);std::filesystem::create_directories(a.out);Scene scene;scene.load(a.assets/"forest.cys");
         Integrator in(scene);in.bark.load(a.assets/"bark.tex");in.soil.load(a.assets/"soil.tex");in.maxDepth=16;
+        in.lights.irradiance*=a.sunScale;in.lights.skyScale*=a.skyScale;in.lights.extinction=a.fog;
+        guardOutput(a,in);
         if(a.mode=="gather"){
             IrradianceCache cache;cache.cell=a.cell;cache.gather(in,a.first,a.last,a.cameraSteps,a.threads);cache.save(a.assets/"forest.irr");
         }else if(a.mode=="bake"){
-            IrradianceCache cache;cache.load(a.assets/"forest.irr",scene.fingerprint);
+            IrradianceCache cache;cache.load(a.assets/"forest.irr",in.transportFingerprint());
             cache.build(in,a.cacheMin,a.cacheMax,a.target,a.threads,a.assets/"forest.irr",!a.uniformCache);
         }else if(a.mode=="volume"){
             VolumeGrid grid;grid.build(in,a.threads);grid.save(a.assets/"forest.vol");
         }else if(a.mode=="film"||a.mode=="still"){
-            IrradianceCache cache;cache.load(a.assets/"forest.irr",scene.fingerprint);
+            IrradianceCache cache;cache.load(a.assets/"forest.irr",in.transportFingerprint());
             for(const auto&r:cache.records)if(!r.front.n||(r.twoSided&&!r.back.n))throw std::runtime_error("Unbaked irradiance cache; run --mode bake first");
-            VolumeGrid grid;grid.load(a.assets/"forest.vol",scene.fingerprint);renderCached(a,in,cache,grid);
+            VolumeGrid grid;grid.load(a.assets/"forest.vol",in.transportFingerprint());renderCached(a,scene,in,cache,grid);
         }else if(a.mode=="scout"||a.mode=="reference"||a.mode=="uncached-film"){
-            renderReference(a,in);
+            renderReference(a,scene,in);
         }else throw std::runtime_error("Unknown mode: "+a.mode);
     }catch(const std::exception&e){std::cerr<<"ERROR: "<<e.what()<<'\n';return 1;}
     return 0;

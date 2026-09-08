@@ -41,6 +41,7 @@ namespace cybr {
         bool includePrimarySun = true; // Excluded only for uncollided cache hemisphere rays.
         explicit Integrator(const Scene & s) : scene(s) {
         }
+        uint64_t transportFingerprint() const;
         BSDF shade(const Surface & s, V3 wo) const;
         V3 trace(Ray ray, RNG & rng) const;
         V3 traceState(Ray ray, RNG & rng, int firstDepth, float initialPdf) const;

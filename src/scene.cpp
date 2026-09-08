@@ -191,6 +191,7 @@ namespace cybr {
     }
     void BVH::build(const std::vector < Box > & bounds, uint32_t leafSize) {
         nodes.clear();
+        wide.clear();
         indices.resize(bounds.size());
         std::iota(indices.begin(), indices.end(), 0u);
         if (bounds.empty()) return;
@@ -351,6 +352,9 @@ namespace cybr {
         wide.shrink_to_fit();
     }
     void Mesh::build() {
+        bounds = Box{};
+        triangles.clear();
+        packets.clear();
         std::vector < Box > boxes;
         boxes.reserve(faces.size());
         triangles.reserve(faces.size());
@@ -447,6 +451,7 @@ namespace cybr {
             read(f, inst.inverse);
             read(f, inst.tint);
             if (inst.mesh >= meshes.size()) throw std::runtime_error("Invalid instance reference");
+            inst.bounds = Box{};
             Box b = meshes[inst.mesh].bounds;
             for (int k = 0;
             k < 8;
@@ -604,6 +609,7 @@ namespace cybr {
         float w = 1 - h.u - h.v;
         Surface s;
         s.p = ray.o + ray.d * h.t;
+        s.footprint = std::max(0.f, ray.coneWidth + ray.coneSpread * h.t);
         s.local = a.p * w + b.p * h.u + c.p * h.v;
         s.uv = a.uv * w + b.uv * h.u + c.uv * h.v;
         s.color =(a.color * w + b.color * h.u + c.color * h.v) * inst.tint;
@@ -619,8 +625,19 @@ namespace cybr {
         if (dot(s.n, - ray.d) < .02f) s.n = s.ng;
         float u1 = b.uv.x - a.uv.x, u2 = c.uv.x - a.uv.x, v1 = b.uv.y - a.uv.y, v2 = c.uv.y - a.uv.y, det = u1 * v2 - u2 * v1;
         if (std::abs(det) > 1e-12f) {
-            s.tangent = normalize((e1 * v2 - e2 * v1) / det);
-            s.bitangent = normalize((e2 * u1 - e1 * u2) / det);
+            const V3 dpdu = (e1 * v2 - e2 * v1) / det;
+            const V3 dpdv = (e2 * u1 - e1 * u2) / det;
+            V3 projected = dpdu - s.n * dot(s.n, dpdu);
+            if (length2(projected) < 1e-18f) projected = Frame(s.n).u;
+            s.tangent = normalize(projected);
+            const V3 crossFrame = normalize(cross(s.n, s.tangent));
+            // Preserve UV handedness under mirrored UVs and mirrored instances.
+            s.bitangent = crossFrame * (dot(crossFrame, dpdv) < 0 ? -1.f : 1.f);
+            const float area2 = length(cross(dpdu, dpdv));
+            const float grazing = std::max(.10f, std::abs(dot(s.ng, ray.d)));
+            if (area2 > 1e-18f) s.uvFootprint = {
+                s.footprint * length(dpdv) / (area2 * grazing),
+                s.footprint * length(dpdu) / (area2 * grazing)};
         } else {
             Frame fr(s.n);
             s.tangent = fr.u;
@@ -640,32 +657,82 @@ namespace cybr {
             origin += offset;
             d = normalize(focal - origin);
         }
-        return Ray(origin, d);
+        Ray ray(origin, d);
+        ray.coneSpread = 2 * tanf / float(height);
+        return ray;
     }
-    void Texture::load(const std::filesystem::path & path) {
-        std::ifstream f(path, std::ios::binary);
-        if (! f) throw std::runtime_error("Cannot open texture: " + path.string());
-        char magic[4];
-        uint32_t channels;
-        readBytes(f, magic, 4);
-        read(f, width);
-        read(f, height);
-        read(f, channels);
-        if (std::memcmp(magic, "CTX1", 4) || channels != 7 || width > 8192 || height > 8192 || width == 0 || height == 0) throw std::runtime_error("Invalid texture");
-        pixels.resize(size_t(width) * height);
-        readBytes(f, pixels.data(), pixels.size() * sizeof(Texel));
+    void Mesh::recomputeNormals() {
+        std::vector<V3> sums(vertices.size());
+        for (const Face& f : faces) {
+            if(f.a >= vertices.size() || f.b >= vertices.size() || f.c >= vertices.size())
+                throw std::runtime_error("Invalid face while rebuilding normals");
+            const V3 area = cross(vertices[f.b].p-vertices[f.a].p, vertices[f.c].p-vertices[f.a].p);
+            if (!finite(area)) throw std::runtime_error("Nonfinite deformed face");
+            if(length2(area) > 1e-26f) { sums[f.a]+=area; sums[f.b]+=area; sums[f.c]+=area; }
+        }
+        for(size_t i=0;i<vertices.size();i++)
+            if(length2(sums[i]) > 1e-26f) vertices[i].n=normalize(sums[i]);
     }
-    Texel Texture::sample(float u, float v) const {
-        float x = fract(u) * width, y = fract(v) * height;
-        int ix = int(x), iy = int(y);
-        float fx = x - ix, fy = y - iy;
-        const Texel & a = pixels[size_t(iy % int(height)) * width + ix % int(width)], & b = pixels[size_t(iy % int(height)) * width +(ix + 1) % int(width)], & c = pixels[size_t((iy + 1) % int(height)) * width + ix % int(width)], & d = pixels[size_t((iy + 1) % int(height)) * width +(ix + 1) % int(width)];
-        Texel t;
-        const float * aa = reinterpret_cast < const float * >(& a), * bb = reinterpret_cast < const float * >(& b), * cc = reinterpret_cast < const float * >(& c), * dd = reinterpret_cast < const float * >(& d);
-        float * rr = reinterpret_cast < float * >(& t);
-        for (int i = 0;
-        i < 7;
-        ++ i) rr[i] = mix(mix(aa[i], bb[i], fx), mix(cc[i], dd[i], fx), fy);
-        return t;
+    namespace {
+        Texel blendTexel(const Texel& a,const Texel& b,float t) {
+            Texel c;c.color=mix(a.color,b.color,t);c.du=mix(a.du,b.du,t);c.dv=mix(a.dv,b.dv,t);
+            c.rough=mix(a.rough,b.rough,t);c.height=mix(a.height,b.height,t);return c;
+        }
+        Texel bilinear(const std::vector<Texel>& pixels,uint32_t w,uint32_t h,float u,float v) {
+            const float x=fract(u)*float(w)-.5f,y=fract(v)*float(h)-.5f;
+            const int ix=int(std::floor(x)),iy=int(std::floor(y));
+            const float fx=x-float(ix),fy=y-float(iy);
+            auto at=[&](int a,int b)->const Texel& {
+                a=(a%int(w)+int(w))%int(w);b=(b%int(h)+int(h))%int(h);
+                return pixels[size_t(b)*w+size_t(a)];
+            };
+            return blendTexel(blendTexel(at(ix,iy),at(ix+1,iy),fx),
+                              blendTexel(at(ix,iy+1),at(ix+1,iy+1),fx),fy);
+        }
+    }
+    void Texture::load(const std::filesystem::path& path) {
+        std::ifstream f(path,std::ios::binary);
+        if(!f)throw std::runtime_error("Cannot open texture: "+path.string());
+        char magic[4];uint32_t channels;readBytes(f,magic,4);read(f,width);read(f,height);read(f,channels);
+        if(std::memcmp(magic,"CTX1",4)||channels!=7||!width||!height||width>8192||height>8192)
+            throw std::runtime_error("Invalid texture dimensions or format");
+        pixels.resize(size_t(width)*height);readBytes(f,pixels.data(),pixels.size()*sizeof(Texel));
+        if(f.peek()!=std::char_traits<char>::eof())throw std::runtime_error("Trailing texture bytes");
+        buildMipmaps();
+    }
+    void Texture::buildMipmaps() {
+        if(!width||!height||pixels.size()!=size_t(width)*height)throw std::runtime_error("Invalid texture storage");
+        fingerprint=hash64((uint64_t(width)<<32)|height);mipmaps.clear();
+        for(const Texel& p:pixels) {
+            if(!finite(p.color)||!std::isfinite(p.du)||!std::isfinite(p.dv)||!std::isfinite(p.rough)||!std::isfinite(p.height))
+                throw std::runtime_error("Nonfinite texture input");
+            for(float v:{p.color.x,p.color.y,p.color.z,p.du,p.dv,p.rough,p.height})
+                fingerprint=hash64(fingerprint^std::bit_cast<uint32_t>(v));
+        }
+        uint32_t w=width,h=height;
+        while(w>1||h>1) {
+            const std::vector<Texel>& previous=mipmaps.empty()?pixels:mipmaps.back().pixels;
+            TextureLevel level;level.width=std::max(1u,(w+1)/2);level.height=std::max(1u,(h+1)/2);
+            level.pixels.resize(size_t(level.width)*level.height);
+            for(uint32_t y=0;y<level.height;y++)for(uint32_t x=0;x<level.width;x++) {
+                // Periodic box filter. It preserves constants and averages slopes before shading.
+                auto at=[&](uint32_t a,uint32_t b)->const Texel& {return previous[size_t(b%h)*w+a%w];};
+                level.pixels[size_t(y)*level.width+x]=blendTexel(
+                    blendTexel(at(2*x,2*y),at(2*x+1,2*y),.5f),
+                    blendTexel(at(2*x,2*y+1),at(2*x+1,2*y+1),.5f),.5f);
+            }
+            w=level.width;h=level.height;mipmaps.push_back(std::move(level));
+        }
+    }
+    Texel Texture::sample(float u,float v,float footprint) const {
+        if(pixels.empty()||!width||!height)throw std::runtime_error("Sampling an empty texture");
+        if(!std::isfinite(u)||!std::isfinite(v)||!std::isfinite(footprint))throw std::runtime_error("Nonfinite texture coordinate");
+        const float rho=std::max(0.f,footprint)*float(std::max(width,height));
+        const float lod=clamp(std::log2(std::max(1.f,rho)),0.f,float(mipmaps.size()));
+        const size_t lo=size_t(lod),hi=std::min(lo+1,mipmaps.size());
+        auto sampleLevel=[&](size_t n){if(!n)return bilinear(pixels,width,height,u,v);
+            const auto& m=mipmaps[n-1];return bilinear(m.pixels,m.width,m.height,u,v);};
+        Texel a=sampleLevel(lo);if(lo==hi)return a;
+        return blendTexel(a,sampleLevel(hi),lod-float(lo));
     }
 }

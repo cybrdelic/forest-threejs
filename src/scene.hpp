@@ -52,6 +52,7 @@ namespace cybr {
         BVH bvh;
         Box bounds;
         void build();
+        void recomputeNormals();
     };
     struct Instance {
         uint32_t mesh = 0;
@@ -76,6 +77,8 @@ namespace cybr {
     struct Surface {
         V3 p, local, n, ng, tangent, bitangent, color;
         V2 uv;
+        float footprint = 0;
+        V2 uvFootprint{};
         uint32_t material;
     };
     struct Scene {
@@ -99,10 +102,17 @@ namespace cybr {
         float du = 0, dv = 0, rough = 1, height = 0;
     };
     static_assert(sizeof(Texel) == 28);
+    struct TextureLevel {
+        uint32_t width = 0, height = 0;
+        std::vector<Texel> pixels;
+    };
     struct Texture {
         uint32_t width = 0, height = 0;
         std::vector < Texel > pixels;
+        uint64_t fingerprint = 0;
+        std::vector<TextureLevel> mipmaps; // Starts at half resolution; base pixels remain intact.
         void load(const std::filesystem::path & path);
-        Texel sample(float u, float v) const;
+        void buildMipmaps();
+        Texel sample(float u, float v, float footprint = 0) const;
     };
 }

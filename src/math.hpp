@@ -214,6 +214,8 @@ namespace cybr {
     struct Ray {
         V3 o, d, inv;
         float tmin = 1e-4f, tmax = Inf;
+        // Conservative ray-cone diameter, in metres and radians. Visibility is unchanged.
+        float coneWidth = 0, coneSpread = 0;
         Ray() = default;
         Ray(V3 O, V3 D, float minT = 1e-4f, float maxT = Inf) : o(O), d(D), tmin(minT), tmax(maxT) {
             for (int i = 0;

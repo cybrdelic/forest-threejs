@@ -1,4 +1,5 @@
 #include "integrator.hpp"
+#include "build_fingerprint.hpp"
 namespace cybr {
     namespace {
         float noiseHash(int a, int b, int c) {
@@ -107,6 +108,14 @@ namespace cybr {
             s * std::cos(p), s * std::sin(p), c
         });
     }
+    uint64_t Integrator::transportFingerprint() const {
+        uint64_t h=hash64(BuildFingerprint)^hash64(scene.fingerprint)^hash64(bark.fingerprint)^hash64(soil.fingerprint+1);
+        auto add=[&](float f){h=hash64(h^std::bit_cast<uint32_t>(f));};
+        for(V3 v:{lights.sun,lights.irradiance,lights.skyScale,lights.volume.lo,lights.volume.hi})
+            for(int i=0;i<3;i++)add(v[i]);
+        for(float f:{lights.sunRadius,lights.extinction,lights.volumeAlbedo,lights.anisotropy})add(f);
+        h=hash64(h^uint64_t(maxDepth));return hash64(h^uint64_t(includePrimarySun));
+    }
     BSDF Integrator::shade(const Surface & s, V3 wo) const {
         BSDF b;
         b.n = s.n;
@@ -122,7 +131,7 @@ namespace cybr {
                 b.R = s.color;
                 b.rough = .68f;
             } else {
-                Texel t = bark.sample(s.uv.x / 1.65f, (s.local.y + .13f * s.local.x + .09f * s.local.z) / 3.5f);
+                Texel t = bark.sample(s.uv.x / 1.65f, s.uv.y / 3.5f, std::max(s.uvFootprint.x/1.65f,s.uvFootprint.y/3.5f));
                 b.R = t.color *(s.color / V3(.22f, .18f, .126f));
                 b.rough = t.rough;
                 bumped = normalize(s.n - s.tangent * clamp(t.du, - 1.0f, 1.0f) - s.bitangent * clamp(t.dv, - .8f, .8f));
@@ -135,7 +144,7 @@ namespace cybr {
                 }
             }
         } else if (s.material == 0) {
-            Texel t = soil.sample(s.p.x / 3.f, s.p.z / 3.f);
+            Texel t = soil.sample(s.p.x / 3.f, s.p.z / 3.f, s.footprint / 3.f);
             b.R = t.color;
             b.rough = t.rough;
             Frame frame(s.n);
@@ -151,7 +160,7 @@ namespace cybr {
             float slope = .032f * std::sin(v * 72 - std::abs(u) * 38) +(u > 0 ? .08f : - .08f) * std::exp(- sqr(u / .12f));
             bumped = normalize(s.n + s.tangent * slope + s.bitangent *(.025f * std::cos(v * 55)));
         } else if (s.material == 5) {
-            Texel t = soil.sample((s.p.x + s.p.z * .27f) / 1.1f, (s.p.z + s.p.y * .5f) / 1.1f);
+            Texel t = soil.sample((s.p.x + s.p.z * .27f) / 1.1f, (s.p.z + s.p.y * .5f) / 1.1f, s.footprint*1.4f/1.1f);
             float patch = t.height;
             float moss = clamp((s.n.y * .45f + patch - .58f) * 2.8f);
             b.R = mix(V3(.145f, .15f, .125f) *(.7f + .8f * patch), V3(.058f, .08f, .023f), moss);
@@ -291,7 +300,10 @@ namespace cybr {
             if (pdf < 1e-12f) break;
             throughput *= b.eval(wi) *(std::abs(dot(b.n, wi)) / pdf);
             previousPdf = pdf;
+            const float spread = ray.coneSpread;
             ray = Ray(offset(surface.p, surface.ng, wi), wi);
+            // First-hit footprint is retained through secondary bounces; no invented diffuse blur.
+            ray.coneWidth = surface.footprint;ray.coneSpread = spread;
             if (! finite(throughput) || maxc(throughput) <= 0) break;
             if (depth >= 2) {
                 float survival = clamp(maxc(throughput), .06f, .95f);
