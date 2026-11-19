@@ -1,16 +1,49 @@
-# CYBR Forest
+# CYBR Forest · V9
 
-Interactive raster forest renderer with WebGPU and WebGL 2 compatibility. This is an independent implementation inspired by the supplied meadow reference.
+Explore a live, raster-rendered meadow and woodland: walk through the grass, change the sun angle, or fly above the forest. This repository includes the runnable WebGPU/WebGL 2 scene, its runtime assets, offline conversion tools, and recorded verification.
 
-## Run
+![CYBR Forest V9: eye-level meadow with wooded ridges beyond](docs/media/forest-v9-meadow.jpg)
 
-For the downloadable release, extract both `CYBR-Forest-Source.zip` and `CYBR-Forest-Trees.zip` into the same folder. Both contain the shared `CYBR-Forest` root. Extract `CYBR-Forest-Captures.zip` alongside them for the recorded views, offline lighting comparisons and evidence.
+![CYBR Forest V9 motion preview: front-lit meadow, backlit meadow, and shaded woodland](docs/media/forest-v9-motion.gif)
 
-Serve `dist` over localhost or HTTPS, for example `python -m http.server 8000 --directory dist`. Open localhost in Chrome or Edge with graphics acceleration. No build, application dependencies, API keys, or external asset requests are required.
+*The GIF is derived from the shipped two-second [1080p motion sample](dist/evidence/meadow-motion.mp4). The still above and the camera study below are frames rendered from the V9 scene.*
 
-Click or drag to look. WASD moves, Q/E changes height, Shift accelerates, H hides the interface. Touch controls, meadow/forest/aerial views, sun controls, two sky modes, a camera tour, diagnostics, and PNG capture are available. PNG capture runs after the draw and gives the browser twelve seconds to supply the image. The ready link remains available if automatic download is suppressed. Open `?view=stills` for the native captures and walking recording. Browsers that cannot allocate a graphics context open those recorded views automatically.
+![CYBR Forest V9 camera study showing distinct field, woodland, canopy, and aerial perspectives](docs/media/forest-v9-shot-frames.jpg)
 
-## Current landscape
+## Quick start
+
+Clone or download this repository, then run from its root:
+
+```sh
+python -m http.server 8000 --directory dist
+```
+
+Open [http://localhost:8000](http://localhost:8000/) in a graphics-accelerated browser. No build, API keys, or runtime package installs are needed. Serve over localhost or HTTPS rather than opening the HTML as a local file.
+
+| Input | Action |
+| --- | --- |
+| Click or drag | Look around |
+| `W` `A` `S` `D` | Move |
+| `Q` / `E` | Change elevation |
+| `Shift` | Move faster |
+| `H` | Toggle the interface |
+
+The UI includes touch controls, meadow/forest/aerial camera presets, a camera tour, sun and sky controls, diagnostics, and PNG capture. PNG capture waits for a drawn frame, with a twelve-second timeout; if automatic download is blocked, use the ready link.
+
+The app tries a live WebGPU renderer, then WebGL 2 when needed. If neither path starts, it opens recorded views. You can open [the recorded views directly](http://localhost:8000/?view=stills) without needing live GPU rendering.
+
+## Repository map
+
+| Path | What lives there |
+| --- | --- |
+| [`dist/`](dist/) | Browser entry point, scene, renderers, shaders, assets and the recorded-view fallback |
+| [`dist/assets/`](dist/assets/) | Packed meshes, material maps, impostors, terrain, HDR environment and asset provenance |
+| [`dist/evidence/`](dist/evidence/) | Scene captures, motion samples, visual comparisons and measurements |
+| [`tools/qa/`](tools/qa/) | Offline checks for renderer paths, vegetation, temporal history, coverage, shadows and fallback |
+| [`tools/reference/`](tools/reference/) | Offline Cycles reference renders and comparison workflow |
+| [`tools/meadow/`](tools/meadow/) | Ground-cover asset acquisition and baking |
+
+## Landscape and tree detail
 
 The eye-level meadow narrows diagonally between irregular edge groves and wooded hills. Inner wooded spurs flank the drainage. Between 1.56 and 2.42 km from the meadow, their heights blend into a 32.5-metre grid sampled from Mapzen elevation tiles in the Smoky Mountains. Beyond that transition the surveyed ridgelines determine the mountain silhouette. The vertical scale is 0.737 and the elevation datum is shifted to fit this scene. Tile addresses, checksums and attribution are in `dist/assets/outer-ridges.json`. Rebuild the field with `python tools/terrain/build-ridges.py`. The photo view uses a 50 degree vertical field of view. The explicit forest domain is 4 × 4 km with 90,000 instances by default and 30,000 / 250,000 settings. Terrain and aggregate forest extend farther. On the outer range, a 256 m patch assembled from the two source leaf-density fields supplies filtered, sub-grid crown normals and a 16-direction sky aperture. Rebuild the 512² field and its ten mip levels with `python tools/terrain/bake-stand-relief.py`. Eight precomputed horizon sectors per outer-canopy vertex describe the surrounding relief and modulate sky and sunlight as the sun moves. A lower understory between explicit trees breaks up exposed forest floor on the wooded slopes.
 
@@ -29,7 +62,7 @@ Nearby trees retain every source leaf component at its authored position and sca
 
 Distant trees use eight azimuth and two elevation captures baked from the full source meshes. The current camera ray is reprojected through up to four neighboring captures using their stored source positions. Their angular weights vary continuously. The reconstructed surface position writes depth as well as supplying lighting and haze. Zero-alpha atlas texels carry extended valid data so filtering cannot pull surfaces toward an empty texel’s origin. Three atlases store linear albedo/coverage, source-model normals/sky visibility, and actual source-model surface position/leaf fraction. Source normals are oriented toward each baked capture before filtering. Directional sunlight extinction uses the actual baked surface point and a 96³ per-model leaf-area-density volume. A 24-step ray integrates density toward the current model-space sun with Beer–Lambert extinction. Density comes from alpha-weighted full source leaf geometry, preserving clumps and gaps. Source leaf-area quantization error is below 0.7%; branch wood and individual leaf-scale transport are approximations. Sky visibility remains separate. Near photographic geometry and far trees share the same source color without a warm tint applied only at distance. Runtime lighting relights those values. Coverage-weighted mipmaps preserve thin foliage and normal variance. The atlas PNG decoder preserves exact bytes, avoiding browser color conversion and premultiplication of data channels. These are geometry-derived impostors, not a background forest photograph.
 
-## Ground cover and lighting
+## Ground cover, lighting and renderer
 
 The renderer streams 180,000 near meadow cells and 65,536 farther cells. Four GPU buckets select the two grass communities, flowering colonies and seeding tussocks. The near bank also includes deterministic bare soil gaps, lodged grass and sparse recruits. Flowering stems rise above the neighboring grass in moist pockets. Farther flower heads retain their physical size as the spacing between grass patches increases. Overlapping multi-metre stand fields influence species, height and pigment. The near bank covers 70 m with a 40–70 m transition into lower-detail geometry. The farther representation extends to 170 m, refreshed at 20 m movement with a nearest 16 m anchor. Near cells use 0.4 m spacing with restrained cell jitter so adjacent 0.6 m patches overlap. Overlapping streamed cells retain identical transforms.
 
@@ -51,7 +84,7 @@ WebGPU rasterizes four coverage samples per pixel. Foliage groups use independen
 
 Camera acceleration and braking are frame-rate independent. WebGPU limits pending frame submissions to two. WebGL updates moving visibility each frame, caches unchanged views, and reuses instance buffers. WebGPU temporal reconstruction uses camera reprojection, previous wind deformation on supported foliage, and rotation-only reprojection on the sky. The motion vector and depth come from the same covered sample. At a mixed-coverage edge, nearby depths and their expected motion determine whether accumulated color still belongs to the pixel. Newly revealed surfaces reject stale history. FXAA follows the history pass. The wide, cached tree-shadow map uses the mean wind pose to avoid a phase jump when the map moves. Close blade shadows follow the wind each frame. Rough reflections inside a grass tuft include neighboring foliage in directions blocked by its leaf area. Grounded walking follows the slope, while vertical input permits free flight.
 
-## Provenance and reproduction
+## Asset provenance and reproduction
 
 CC0 sources include Poly Haven Grass Bermuda 01 by Rico Cilliers and Grass Medium 01, Celandine 01, and Dandelion 01 photographed by Rob Tuytel and modeled by Rico Cilliers. Tree sources include Tree Small 02 and Jacaranda by Rico Cilliers, Poly Haven Bark Brown 02 and Forest Ground 04, ambientCG Grass005, and the HDR sky above. Source URLs, license URLs, authors, and conversions accompany `dist/assets`. These tree meshes are authored geometry with photographic textures; they are not described as completely photoscanned trees. Grass005 is published as procedural with bitmap elements.
 
