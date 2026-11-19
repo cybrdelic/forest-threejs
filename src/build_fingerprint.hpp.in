@@ -1,3 +1,0 @@
-#pragma once
-#include <cstdint>
-namespace cybr { inline constexpr uint64_t BuildFingerprint = 0x@CYBR_BUILD_HASH64@ULL; }

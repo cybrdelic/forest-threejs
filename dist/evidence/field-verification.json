@@ -1,0 +1,1110 @@
+{
+  "adapter": "llvmpipe (LLVM 19.1.7, 256 bits)",
+  "api": "OpenGL ES 3.2 Mesa 25.0.7-2+deb13u1",
+  "stills": {
+    "meadow": {
+      "file": "meadow-1080.jpg",
+      "sha256": "9fa500f34121a4fe04d1112787538080aea50486220c7450f055869bdab0a5b9",
+      "size": [
+        1920,
+        1080
+      ],
+      "msaa": 4,
+      "triangles": 14711688,
+      "settings": {
+        "sunElevation": 48,
+        "sunAzimuth": 345,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "camera": [
+        -170,
+        245.47884942515543,
+        210
+      ],
+      "yaw": 0.23008614719223408,
+      "pitch": -0.0006140113879166569,
+      "time": 1
+    },
+    "front": {
+      "file": "meadow-front-1080.jpg",
+      "sha256": "7b0519f557a50f32b923d60cbbf64010fd7eebe09ba8506bfe12d7201d431757",
+      "size": [
+        1920,
+        1080
+      ],
+      "msaa": 4,
+      "triangles": 14711688,
+      "settings": {
+        "sunElevation": 38,
+        "sunAzimuth": 103,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "camera": [
+        -170,
+        245.47884942515543,
+        210
+      ],
+      "yaw": 0.23008614719223408,
+      "pitch": -0.0006140113879166569,
+      "time": 1
+    },
+    "back": {
+      "file": "meadow-back-1080.jpg",
+      "sha256": "aee8c81677efe493157d765f6fd7bc40b0678c05fcf95c789060188455753987",
+      "size": [
+        1920,
+        1080
+      ],
+      "msaa": 4,
+      "triangles": 14711688,
+      "settings": {
+        "sunElevation": 38,
+        "sunAzimuth": 283,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "camera": [
+        -170,
+        245.47884942515543,
+        210
+      ],
+      "yaw": 0.23008614719223408,
+      "pitch": -0.0006140113879166569,
+      "time": 1
+    },
+    "shade": {
+      "file": "meadow-shade-1080.jpg",
+      "sha256": "b99fa857c22db815782b0713d5e66d1ecc12135f5c86dff8a6a2a95578c8cf1b",
+      "size": [
+        1920,
+        1080
+      ],
+      "msaa": 4,
+      "triangles": 25542581,
+      "settings": {
+        "sunElevation": 48,
+        "sunAzimuth": 345,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "camera": [
+        -345,
+        201.37657426702287,
+        -75
+      ],
+      "yaw": -0.7551044034786732,
+      "pitch": -0.061933455774571905,
+      "time": 1
+    },
+    "botany": {
+      "file": "meadow-botany-1080.jpg",
+      "sha256": "33de9b00afd24bb73de054a99b2ec145e0cdb8d5d2a63904eed111c08e657760",
+      "size": [
+        1920,
+        1080
+      ],
+      "msaa": 4,
+      "triangles": 14187709,
+      "settings": {
+        "sunElevation": 48,
+        "sunAzimuth": 345,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "camera": [
+        -170,
+        243.76148009673113,
+        206
+      ],
+      "yaw": 0.3217505543966422,
+      "pitch": -0.5607656912396639,
+      "time": 1
+    }
+  },
+  "rasterReference": {
+    "file": "raster-detail-comparison.jpg",
+    "sha256": "99171adf1e766e8cea34c2961e66643f63f15c549c4e272e97a171e18c92c423",
+    "fullSize": [
+      3840,
+      2160
+    ],
+    "cropIn1080Pixels": [
+      512,
+      490,
+      896,
+      542
+    ],
+    "comparison": "Matched camera, geometry, wind, time, sun and 4\u00d7 sample coverage. Only the final viewport resolution doubles. The cropped region is reduced in linear display light. Luma errors are measured before JPEG compression on a 0\u2013255 display scale.",
+    "regions": {
+      "whole": {
+        "pixels": 485632,
+        "meanAbsoluteDisplayLumaDifference": 7.456,
+        "p95AbsoluteDisplayLumaDifference": 24.24,
+        "nativeMeanHorizontalLumaGradient": 10.594,
+        "referenceMeanHorizontalLumaGradient": 8.663
+      },
+      "upper": {
+        "pixels": 242816,
+        "meanAbsoluteDisplayLumaDifference": 4.962,
+        "p95AbsoluteDisplayLumaDifference": 16.832,
+        "nativeMeanHorizontalLumaGradient": 7.069,
+        "referenceMeanHorizontalLumaGradient": 5.995
+      },
+      "lower": {
+        "pixels": 242816,
+        "meanAbsoluteDisplayLumaDifference": 9.95,
+        "p95AbsoluteDisplayLumaDifference": 28.421,
+        "nativeMeanHorizontalLumaGradient": 14.119,
+        "referenceMeanHorizontalLumaGradient": 11.331
+      }
+    }
+  },
+  "walks": {
+    "front": {
+      "frames": 12,
+      "size": [
+        1920,
+        1080
+      ],
+      "fps": 18,
+      "timeStart": 1,
+      "settings": {
+        "sunElevation": 38,
+        "sunAzimuth": 103,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "poses": [
+        {
+          "seconds": 0,
+          "camera": [
+            -170,
+            245.47884942515543,
+            210
+          ],
+          "yaw": 0.23008614719223408,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.05555555555555555,
+          "camera": [
+            -169.96024873826727,
+            245.46033523743895,
+            209.92994687375682
+          ],
+          "yaw": 0.2305332976617533,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.1111111111111111,
+          "camera": [
+            -169.9204974765345,
+            245.44182104972248,
+            209.8598937475137
+          ],
+          "yaw": 0.23175935540075757,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.16666666666666666,
+          "camera": [
+            -169.88074621480177,
+            245.42330686200603,
+            209.7898406212705
+          ],
+          "yaw": 0.2335912299049169,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.2222222222222222,
+          "camera": [
+            -169.840994953069,
+            245.40479267428955,
+            209.71978749502736
+          ],
+          "yaw": 0.2358558306699013,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.2777777777777778,
+          "camera": [
+            -169.80124369133628,
+            245.38627848657308,
+            209.6497343687842
+          ],
+          "yaw": 0.2383800671913807,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.3333333333333333,
+          "camera": [
+            -169.76149242960352,
+            245.36776429885663,
+            209.57968124254106
+          ],
+          "yaw": 0.2409908489650251,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.3888888888888889,
+          "camera": [
+            -169.7217411678708,
+            245.34925011114012,
+            209.50962811629788
+          ],
+          "yaw": 0.2435150854865045,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.4444444444444444,
+          "camera": [
+            -169.68198990613806,
+            245.33073592342365,
+            209.43957499005472
+          ],
+          "yaw": 0.24577968625148888,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.5,
+          "camera": [
+            -169.64223864440532,
+            245.3122217357072,
+            209.36952186381157
+          ],
+          "yaw": 0.24761156075564822,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.5555555555555556,
+          "camera": [
+            -169.60248738267256,
+            245.29370754799072,
+            209.2994687375684
+          ],
+          "yaw": 0.2488376184946525,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.6111111111111112,
+          "camera": [
+            -169.56273612093983,
+            245.27519336027424,
+            209.22941561132524
+          ],
+          "yaw": 0.2492847689641717,
+          "pitch": -0.0006140113879166569
+        }
+      ]
+    },
+    "back": {
+      "frames": 12,
+      "size": [
+        1920,
+        1080
+      ],
+      "fps": 18,
+      "timeStart": 1,
+      "settings": {
+        "sunElevation": 38,
+        "sunAzimuth": 283,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "poses": [
+        {
+          "seconds": 0,
+          "camera": [
+            -170,
+            245.47884942515543,
+            210
+          ],
+          "yaw": 0.23008614719223408,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.05555555555555555,
+          "camera": [
+            -169.96024873826727,
+            245.46033523743895,
+            209.92994687375682
+          ],
+          "yaw": 0.2305332976617533,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.1111111111111111,
+          "camera": [
+            -169.9204974765345,
+            245.44182104972248,
+            209.8598937475137
+          ],
+          "yaw": 0.23175935540075757,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.16666666666666666,
+          "camera": [
+            -169.88074621480177,
+            245.42330686200603,
+            209.7898406212705
+          ],
+          "yaw": 0.2335912299049169,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.2222222222222222,
+          "camera": [
+            -169.840994953069,
+            245.40479267428955,
+            209.71978749502736
+          ],
+          "yaw": 0.2358558306699013,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.2777777777777778,
+          "camera": [
+            -169.80124369133628,
+            245.38627848657308,
+            209.6497343687842
+          ],
+          "yaw": 0.2383800671913807,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.3333333333333333,
+          "camera": [
+            -169.76149242960352,
+            245.36776429885663,
+            209.57968124254106
+          ],
+          "yaw": 0.2409908489650251,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.3888888888888889,
+          "camera": [
+            -169.7217411678708,
+            245.34925011114012,
+            209.50962811629788
+          ],
+          "yaw": 0.2435150854865045,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.4444444444444444,
+          "camera": [
+            -169.68198990613806,
+            245.33073592342365,
+            209.43957499005472
+          ],
+          "yaw": 0.24577968625148888,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.5,
+          "camera": [
+            -169.64223864440532,
+            245.3122217357072,
+            209.36952186381157
+          ],
+          "yaw": 0.24761156075564822,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.5555555555555556,
+          "camera": [
+            -169.60248738267256,
+            245.29370754799072,
+            209.2994687375684
+          ],
+          "yaw": 0.2488376184946525,
+          "pitch": -0.0006140113879166569
+        },
+        {
+          "seconds": 0.6111111111111112,
+          "camera": [
+            -169.56273612093983,
+            245.27519336027424,
+            209.22941561132524
+          ],
+          "yaw": 0.2492847689641717,
+          "pitch": -0.0006140113879166569
+        }
+      ]
+    },
+    "shade": {
+      "frames": 12,
+      "size": [
+        1920,
+        1080
+      ],
+      "fps": 18,
+      "timeStart": 1,
+      "settings": {
+        "sunElevation": 48,
+        "sunAzimuth": 345,
+        "wind": 0.8,
+        "density": 90000,
+        "quality": "balanced",
+        "debug": "beauty",
+        "sky": "photographic"
+      },
+      "poses": [
+        {
+          "seconds": 0,
+          "camera": [
+            -345,
+            201.37657426702287,
+            -75
+          ],
+          "yaw": -0.7551044034786732,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.05555555555555555,
+          "camera": [
+            -345.0364099996346,
+            201.35660694545993,
+            -75.0718464698673
+          ],
+          "yaw": -0.7546572530091541,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.1111111111111111,
+          "camera": [
+            -345.07281999926926,
+            201.336639623897,
+            -75.14369293973456
+          ],
+          "yaw": -0.7534311952701498,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.16666666666666666,
+          "camera": [
+            -345.1092299989039,
+            201.31667230233407,
+            -75.21553940960186
+          ],
+          "yaw": -0.7515993207659905,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.2222222222222222,
+          "camera": [
+            -345.14563999853857,
+            201.29670498077115,
+            -75.28738587946914
+          ],
+          "yaw": -0.7493347200010061,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.2777777777777778,
+          "camera": [
+            -345.18204999817317,
+            201.27673765920824,
+            -75.35923234933642
+          ],
+          "yaw": -0.7468104834795266,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.3333333333333333,
+          "camera": [
+            -345.2184599978078,
+            201.2567703376453,
+            -75.4310788192037
+          ],
+          "yaw": -0.7441997017058822,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.3888888888888889,
+          "camera": [
+            -345.2548699974424,
+            201.23680301608235,
+            -75.502925289071
+          ],
+          "yaw": -0.7416754651844029,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.4444444444444444,
+          "camera": [
+            -345.29127999707714,
+            201.21683569451943,
+            -75.57477175893827
+          ],
+          "yaw": -0.7394108644194184,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.5,
+          "camera": [
+            -345.32768999671174,
+            201.1968683729565,
+            -75.64661822880556
+          ],
+          "yaw": -0.7375789899152592,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.5555555555555556,
+          "camera": [
+            -345.3640999963464,
+            201.17690105139357,
+            -75.71846469867283
+          ],
+          "yaw": -0.7363529321762549,
+          "pitch": -0.061933455774571905
+        },
+        {
+          "seconds": 0.6111111111111112,
+          "camera": [
+            -345.400509995981,
+            201.15693372983063,
+            -75.79031116854013
+          ],
+          "yaw": -0.7359057817067356,
+          "pitch": -0.061933455774571905
+        }
+      ]
+    }
+  },
+  "captureSourceSHA256": {
+    "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+    "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+    "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+    "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+    "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+    "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+    "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+    "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+    "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+    "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+    "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+    "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+    "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+    "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+    "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+    "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+    "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+    "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+    "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+    "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+    "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+    "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+    "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+    "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+    "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+    "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+    "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+    "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+    "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+    "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+    "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+    "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+    "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+    "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+    "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+    "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+    "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+    "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+    "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+    "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+    "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+    "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+  },
+  "assetSHA256": {
+    "assets/impostors/oak.json": "035d306a700b0fd32e8506ed46bb32497b1e31d85a621a3e796f5e66581f06be",
+    "assets/impostors/oak-albedo.png": "2c4ffc618894ccd2addd9d6edcbf93ed799bfb2634f117b62a8324aeb011b033",
+    "assets/impostors/oak-normal.png": "1dba8ef12b91ef925b9e99e6ac33ca19bc0895011549cbcd67e957e50ee00244",
+    "assets/impostors/jacaranda.json": "6f0faebde7b11c4e6d7fe6b87fce41960762560d38fcc3fc827661c4441b66c3",
+    "assets/impostors/jacaranda-albedo.png": "f0cdee4a477776e6266b42eee5988a39977480c169eb9b7b507087cde3b4ae90",
+    "assets/impostors/jacaranda-normal.png": "b5e4ae4a9a9f7e6f89fff38279c5a8f40654506944fa531ab8534e48b4fd2ef3",
+    "assets/albedo.bin": "d4591e1de6050bf77f3f595b11dfcdaa28a19ee7b39cccbaefbbb91a4c53dd34",
+    "assets/normal.bin": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6",
+    "assets/sky-detail.bin": "57e116a9098cf1263a42fa59373b6195cfc8a3a2dcf70eda6670451cfcf323ec",
+    "assets/environment.bin": "0d0c20d585edf730f9eb3f9275de393f0391c829f45e1caeafb3cff3016eb630",
+    "assets/cloud-transmittance.bin": "7417f7d3dadf8e94d92cf098bde38c6d856e4d0c1e91798131f16d8fd6d1f582",
+    "assets/stand-relief.bin": "565e69d720429aad9c43c60d8aca3b243abd1f2e611e3c41ac23f1f3cd6718ee",
+    "assets/meadow/bermuda-vertices.bin": "f50ef51cd1a9d6f317cf0518b9298a800305e0fe556045e08a3b48d916efee66",
+    "assets/meadow/bermuda-indices.bin": "c4c8651c3c20b46815acc89601bef977b441300a27a9294ddf24460e87caa20b",
+    "assets/meadow/grass-vertices.bin": "86ac748d19fc8c676e43dcc6f9e996abb673138961fe08f54a6950d34d714154",
+    "assets/meadow/grass-indices.bin": "c4c8651c3c20b46815acc89601bef977b441300a27a9294ddf24460e87caa20b",
+    "assets/trees/near-vertices.bin": "2e8a11d31ace508916010e8ed66221b73bf37bc15dcb256e6a31b726c2f28fd3",
+    "assets/trees/near-indices.bin": "b10c0b06e01ea2f5ceba5522500b9214da4e678eea8c58011cd7dd50e9e3191f",
+    "assets/trees/mid-vertices.bin": "348a53187014cf711e04bcef5432b204f7cedc553dae48aec05f8e4ec7d13687",
+    "assets/trees/mid-indices.bin": "af6dce094318bf51d52f7e4f91d129691480e663bcfc6e6954d1f1024789f2c9",
+    "assets/trees/canopy-vertices.bin": "34d69d237204731ea6b34c54b086777f4884ebd691248878b703c88f1fcd7c66",
+    "assets/trees/canopy-indices.bin": "ca3da49b8c394d89dea75b040f94d1e5e6482b27c5ce791af6c72865387551c8",
+    "assets/trees/far-vertices.bin": "fa78588a0718b0346b603cfb6ad95beb5593c4614ab48765c7ed22dd81c78261",
+    "assets/trees/far-indices.bin": "1ac67ef17b5646623ae76ddcfc43c3cf5438fc0757ba024a2299bfea2b67febb",
+    "assets/jacaranda/near-vertices.bin": "0d840bc5474163809517eef6f4d940a40855663d171a1d6daa73bc29a0cd2c85",
+    "assets/jacaranda/near-indices.bin": "ef1b72895bbf8c651a423c86cf18df6dce43983758b652db215c0f78a091f04a",
+    "assets/jacaranda/mid-vertices.bin": "8d05345582285583dcf28a8026e43eb805106e1dad6e4dde7eba5f63bee5dd33",
+    "assets/jacaranda/mid-indices.bin": "42bda49decf0839324ceba6d8a1330a2859eeabfdec8eb676b9c9d7be93da64e",
+    "assets/jacaranda/canopy-vertices.bin": "21cfaabecca070cdb482ef0862f4baa5c8d5e4e78721dfa81d9962b19cc77dde",
+    "assets/jacaranda/canopy-indices.bin": "3b181d1a465c5f483f01a485aaac0206546bf80081320190a3ec34a5b17cb733",
+    "assets/jacaranda/far-vertices.bin": "b8c4c89cd9f36a723083e5d6c3fea6af671b1cd944e822997e35fa1f4a6ffebb",
+    "assets/jacaranda/far-indices.bin": "35e500b04a74b229ec99974f196b72dca21ae7ffa31912ad44a1847d3e94d40c",
+    "assets/impostors/oak-position.png": "8dede8a08987f6edab93849b2382eac66797c9fd35027a0597753abcb709a0b2",
+    "assets/impostors/oak-density.json": "a4a326461d800fe17eb2a30db86986d1481895471b287d427d44d536dbc0454a",
+    "assets/impostors/oak-density.bin": "96df7f1f12040e7a601c4e8b26d6157d2ca2a792a99d9abbe3162f11f1c45bc2",
+    "assets/impostors/jacaranda-position.png": "7800c12693dfe39c8570279817348bdc2176d623102573f9bfc729182d7675db",
+    "assets/impostors/jacaranda-density.json": "3e4197fc75222ed6f01eb437eb7311c7d09eec5208db96f6ecd8fd350a7d01f0",
+    "assets/impostors/jacaranda-density.bin": "215ac190f80a8a5919c9838cc4b490bafd8e8d4232587a7099c10098edd71657"
+  },
+  "beforeAfter": {
+    "file": "meadow-before-after.jpg",
+    "sha256": "7b2d74fe7cac5927d08a0721fd5f958056a77a1b1980c006c89359d08185f9d1",
+    "baselineCommit": "6976a150a0cf82c7d71b33d82013f880f83a928e",
+    "sourceResolution": [
+      1920,
+      1080
+    ],
+    "settings": "Initial meadow camera, matched 345\u00b0 azimuth and 48\u00b0 solar elevation, wind 0.8, 90,000 trees, balanced quality, scene time 1 s, 4\u00d7 MSAA",
+    "baselineRasterReference": {
+      "whole": {
+        "pixels": 485632,
+        "meanAbsoluteDisplayLumaDifference": 7.377,
+        "p95AbsoluteDisplayLumaDifference": 24.379,
+        "nativeMeanHorizontalLumaGradient": 11.591,
+        "referenceMeanHorizontalLumaGradient": 9.672
+      },
+      "upper": {
+        "pixels": 242816,
+        "meanAbsoluteDisplayLumaDifference": 5.327,
+        "p95AbsoluteDisplayLumaDifference": 18.938,
+        "nativeMeanHorizontalLumaGradient": 7.23,
+        "referenceMeanHorizontalLumaGradient": 6.057
+      },
+      "lower": {
+        "pixels": 242816,
+        "meanAbsoluteDisplayLumaDifference": 9.427,
+        "p95AbsoluteDisplayLumaDifference": 27.675,
+        "nativeMeanHorizontalLumaGradient": 15.951,
+        "referenceMeanHorizontalLumaGradient": 13.288
+      }
+    },
+    "note": "Each release is compared to its own supersampled output. Scene geometry, lighting and frequency content differ."
+  },
+  "movingRasterReference": {
+    "front": {
+      "file": "wind-detail-front.jpg",
+      "sha256": "faf984b6c541fc20bcc3300c6048a11621893b21f30e8118aa610bba6a2bd769",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "referenceSize": [
+        3840,
+        2160
+      ],
+      "cropIn1080Pixels": [
+        900,
+        810,
+        256,
+        160
+      ],
+      "regions": [
+        {
+          "pixels": 40960,
+          "meanAbsoluteDisplayLumaDifference": 10.211,
+          "p95AbsoluteDisplayLumaDifference": 28.164,
+          "nativeMeanHorizontalLumaGradient": 13.391,
+          "referenceMeanHorizontalLumaGradient": 10.193
+        },
+        {
+          "pixels": 40960,
+          "meanAbsoluteDisplayLumaDifference": 10.155,
+          "p95AbsoluteDisplayLumaDifference": 27.813,
+          "nativeMeanHorizontalLumaGradient": 13.242,
+          "referenceMeanHorizontalLumaGradient": 10.176
+        }
+      ],
+      "samples": 4,
+      "frames": 2,
+      "secondsBetweenPoses": 0.05555555555555555,
+      "frameChangeResidual": {
+        "meanAbsoluteDisplayLuma": 13.687444757896088,
+        "p95": 36.388483512411845,
+        "fractionAbove8": 0.6068115234375,
+        "nativeMeanAbsoluteChange": 15.85941648925781,
+        "referenceMeanAbsoluteChange": 12.617026067899594,
+        "signedChangeCorrelation": 0.5959644228277727
+      },
+      "method": "The camera translates, yaws, follows terrain height, and wind animation advances. Each native frame is compared to the same pose, sun, wind, and time rendered at double width and height. The residual compares the signed native frame change to the signed change in the area-filtered references at corresponding screen coordinates."
+    }
+  },
+  "motionFile": {
+    "file": "meadow-motion.mp4",
+    "sha256": "caf52c4d13f316aefca9b0f1f0c0e0f9829e00ba63e1ec66abad1f0908d33ae5",
+    "uniqueDecodedFrames": 36,
+    "width": 1920,
+    "height": 1080,
+    "duration": "2.000000",
+    "nb_read_frames": "36"
+  },
+  "openingCommandParity": {
+    "method": "Recorded the scenes again from the final source, with explicit solar settings. Verified equal camera poses, times, settings, all fetched asset hashes and actual GLES calls. Independently initialized per-species atlas handles are normalized before comparing command streams. The order of draws and all draw arguments are preserved.",
+    "results": {
+      "meadow": {
+        "frames": 1,
+        "commands": 1677,
+        "sha256CanonicalCommands": "6a9be7e5040e3b8c7122949f249948506911c9621fd83b951d7719e39e1afa87",
+        "matchedRawHandleOrder": true
+      },
+      "botany": {
+        "frames": 1,
+        "commands": 1689,
+        "sha256CanonicalCommands": "573a6ed6029cfe0b18d84476b6e1067a0e37b8d28fe2393cd2f5bc8df645f766",
+        "matchedRawHandleOrder": true
+      },
+      "front-walk": {
+        "frames": 12,
+        "commands": 4372,
+        "sha256CanonicalCommands": "d6f5399276d0d0299b0de34e61dc59e852bc806801bf5b6079c204a266683696",
+        "matchedRawHandleOrder": true
+      },
+      "shade-walk": {
+        "frames": 12,
+        "commands": 4470,
+        "sha256CanonicalCommands": "4dbf4340fd2aa9942c7d3b7fa915935310ae9a1bd7026ca534f21409f13cc0d4",
+        "matchedRawHandleOrder": true
+      },
+      "meadow-reference": {
+        "frames": 1,
+        "commands": 1677,
+        "sha256CanonicalCommands": "c84709689e1e0160b0d266bb96f4deaff663ec6df589a1f01266f4d12af93d40",
+        "matchedRawHandleOrder": false
+      },
+      "front-wind-reference": {
+        "frames": 12,
+        "commands": 4372,
+        "sha256CanonicalCommands": "4929fc58f983d695daa62c2de2b9909cde553b3d46b03fe9d41a8e43ea85cb84",
+        "matchedRawHandleOrder": true
+      },
+      "back-walk": {
+        "frames": 12,
+        "commands": 4372,
+        "sha256CanonicalCommands": "356506ef076f183fde28bd4c1fc0957866c4aa069ded3ca8310a18b61c825c58",
+        "matchedRawHandleOrder": true
+      }
+    }
+  },
+  "backlightCorrection": {
+    "method": "All backlight poses were rerendered with the complete corrected GLES draw stream. A full-resolution scissor limited color/depth writes to the conservative outer-canopy band; shadows, viewport and projections were preserved. Unchanged rows come from the original matching native frame. The first reconstructed frame was checked byte-for-byte against an independent full corrected 1080p render.",
+    "scissor": [
+      0,
+      376,
+      1920,
+      174
+    ],
+    "geometryBounds": {
+      "width": 1920,
+      "height": 1080,
+      "frames": [
+        {
+          "index": 0,
+          "visibleOuterTriangles": 153154,
+          "eligibleTriangles": 127437,
+          "fresnelUpperBound": 0.21330116776040015,
+          "rowRange": [
+            380,
+            549
+          ]
+        },
+        {
+          "index": 1,
+          "visibleOuterTriangles": 153198,
+          "eligibleTriangles": 127437,
+          "fresnelUpperBound": 0.2133031018983795,
+          "rowRange": [
+            380,
+            549
+          ]
+        },
+        {
+          "index": 2,
+          "visibleOuterTriangles": 153192,
+          "eligibleTriangles": 127437,
+          "fresnelUpperBound": 0.21330503605768578,
+          "rowRange": [
+            380,
+            549
+          ]
+        },
+        {
+          "index": 3,
+          "visibleOuterTriangles": 153211,
+          "eligibleTriangles": 127438,
+          "fresnelUpperBound": 0.21330697023826162,
+          "rowRange": [
+            379,
+            549
+          ]
+        },
+        {
+          "index": 4,
+          "visibleOuterTriangles": 153213,
+          "eligibleTriangles": 127438,
+          "fresnelUpperBound": 0.2133089044400499,
+          "rowRange": [
+            379,
+            549
+          ]
+        },
+        {
+          "index": 5,
+          "visibleOuterTriangles": 153232,
+          "eligibleTriangles": 127438,
+          "fresnelUpperBound": 0.21331083866323747,
+          "rowRange": [
+            379,
+            549
+          ]
+        },
+        {
+          "index": 6,
+          "visibleOuterTriangles": 153254,
+          "eligibleTriangles": 127439,
+          "fresnelUpperBound": 0.2133127729076045,
+          "rowRange": [
+            378,
+            549
+          ]
+        },
+        {
+          "index": 7,
+          "visibleOuterTriangles": 153268,
+          "eligibleTriangles": 127442,
+          "fresnelUpperBound": 0.21331470717325632,
+          "rowRange": [
+            378,
+            549
+          ]
+        },
+        {
+          "index": 8,
+          "visibleOuterTriangles": 153282,
+          "eligibleTriangles": 127441,
+          "fresnelUpperBound": 0.21331664146024498,
+          "rowRange": [
+            378,
+            549
+          ]
+        },
+        {
+          "index": 9,
+          "visibleOuterTriangles": 153295,
+          "eligibleTriangles": 127440,
+          "fresnelUpperBound": 0.2133185757683769,
+          "rowRange": [
+            378,
+            549
+          ]
+        },
+        {
+          "index": 10,
+          "visibleOuterTriangles": 153307,
+          "eligibleTriangles": 127438,
+          "fresnelUpperBound": 0.2133205100978669,
+          "rowRange": [
+            377,
+            549
+          ]
+        },
+        {
+          "index": 11,
+          "visibleOuterTriangles": 153313,
+          "eligibleTriangles": 127435,
+          "fresnelUpperBound": 0.21332244444854861,
+          "rowRange": [
+            377,
+            549
+          ]
+        }
+      ],
+      "rowRange": [
+        377,
+        549
+      ]
+    },
+    "fullFrameCheck": {
+      "totalPixels": 2073600,
+      "changedPixels": 44303,
+      "changedBounds": [
+        109,
+        393,
+        1716,
+        511
+      ],
+      "reconstructedVersusFullFrameDifferentPixels": 0,
+      "correctedFullPNG": "7830c110fe90e82b529ffef2210c0453690c2c21062cb8190a5c49ad0deb3440"
+    },
+    "changedShaderSources": [
+      "0c98d91bc34865cc14f07f4610ca8741d518175c169009ffaf6f301922115d5b",
+      "b0699120c8db871a853ef1db2b75ad053de5752abcd0d953daaeaf86de9c19da",
+      "88795d6861c53591f39d3be33ec55c7a5737a75074251147162d136fbefe3882"
+    ],
+    "priorCaptureSourceSHA256": {
+      "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+      "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+      "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+      "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+      "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+      "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+      "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+      "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+      "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+      "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+      "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+      "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+      "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+      "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+      "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+      "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+      "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+      "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+      "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+      "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+      "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+      "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+      "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+      "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+      "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+      "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+      "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+      "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+      "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+      "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+      "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+      "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+      "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+      "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+      "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+      "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+      "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+      "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+      "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+      "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+      "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+      "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+    },
+    "correctedCaptureSourceSHA256": {
+      "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+      "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+      "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+      "controls.js": "ac6e48b0d00239e04fc02834696da28ae80ddf3ee27a5a1aa1aa38eb91f9131d",
+      "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+      "daylight.js": "b051c759ffd14819c480a5d519465682b50e37cc30c990d44af6cfe272896211",
+      "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+      "fallback.js": "338432b5927ff96f59a024b23d303e1497956b6e888e2c18779fb1a58921d445",
+      "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+      "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+      "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+      "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+      "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+      "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+      "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+      "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+      "main.js": "a0dfb2139c1a39a83d07b19d60ffbfa2d37d936d7ecd03b07222613ebde6907b",
+      "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+      "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+      "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+      "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+      "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+      "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+      "meshlets.js": "33231fc8556c567641f0759afc05f379f1ae306fc68e785589af08843bbdc625",
+      "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+      "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+      "rendered-views.js": "3aed20d4e3e1193c290184e026b6f618918d31659b965658966000c09a16b71a",
+      "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+      "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+      "shaders.js": "547a214ad75c8cb57da566fd9d0aff895c2a1f4e8553a77b3ffb5f01ab57f57d",
+      "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+      "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+      "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+      "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+      "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+      "streaming.js": "078362aca3d64a5370e054af8fb15f2beaa03dcf6d61e55727d1f7f34c7daf22",
+      "surface-light.js": "23a30f92174cde27e8cdddfca9cd3b64049eb4163c181e8f0b9353184a66e78c",
+      "temporal.js": "ac572a3b320bdc0985c2cd7ccda11735540579dd460d22593202984101b36eec",
+      "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+      "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+      "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+      "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+      "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+    }
+  },
+  "limit": "Software-rasterized offline. Video cadence describes encoded playback. These captures do not measure interactive hardware performance.",
+  "unchangedPoses": {
+    "activationThreshold": 0.12,
+    "method": "Projected the indexed outer-stand triangles from the production mesh and actual recorded view matrices. Potentially visible triangles include a viewport border. A spherical cap enclosing all directions to each triangle bounds the maximum Fresnel anywhere on it. A bound below threshold proves this final shader change is inactive for the entire visible stand. Other materials do not enter the correction.",
+    "results": {
+      "meadow": {
+        "testedPoses": 1,
+        "maxFresnelUpperBound": 0.11267718856065706,
+        "eligibleTriangles": 0
+      },
+      "botany": {
+        "testedPoses": 1,
+        "maxFresnelUpperBound": 0.0,
+        "eligibleTriangles": 0
+      },
+      "shade": {
+        "testedPoses": 12,
+        "maxFresnelUpperBound": 0.04722403966993842,
+        "eligibleTriangles": 0
+      },
+      "front": {
+        "testedPoses": 12,
+        "maxFresnelUpperBound": 0.04002888136155352,
+        "eligibleTriangles": 0
+      },
+      "windReference": {
+        "testedPoses": 12,
+        "maxFresnelUpperBound": 0.04002888136155352,
+        "eligibleTriangles": 0
+      },
+      "spatialReference": {
+        "testedPoses": 1,
+        "maxFresnelUpperBound": 0.11267718856065706,
+        "eligibleTriangles": 0
+      }
+    },
+    "correctedModules": {
+      "dist/fallback.js": "338432b5927ff96f59a024b23d303e1497956b6e888e2c18779fb1a58921d445",
+      "dist/shaders.js": "547a214ad75c8cb57da566fd9d0aff895c2a1f4e8553a77b3ffb5f01ab57f57d",
+      "dist/surface-light.js": "23a30f92174cde27e8cdddfca9cd3b64049eb4163c181e8f0b9353184a66e78c"
+    }
+  }
+}

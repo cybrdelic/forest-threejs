@@ -1,0 +1,16 @@
+{
+  "license": "CC0",
+  "license_url": "https://polyhaven.com/license",
+  "author": "Rico Cilliers",
+  "source_tree": "https://polyhaven.com/a/tree_small_02",
+  "source_materials": [
+    "https://polyhaven.com/a/leafy_grass",
+    "https://polyhaven.com/a/forest_ground_04",
+    "https://polyhaven.com/a/bark_brown_02"
+  ],
+  "source_scale": 3.5,
+  "source_ground_offset": 0.084363463,
+  "near_mid_conversion": "Source-connected shoots with the original UV triangle masks and photographed alpha. Each surface fits the authored source pose, curvature and normal field. Every source shoot is present at near LOD. Mid LOD selects deterministic shoots and compensates their projected area. QEM-reduced source branches and trunks are retained.",
+  "runtime_format": "TRV6 little-endian 32-byte header (magic, uint32 vertex count, float32 bounds minimum and extent), then 22 bytes per vertex (3xUNORM16 xyz, 2xSNORM8 octahedral normal, 9 visibility bytes, uint8 material ID, 2xUNORM16 material parameters), and separate uint32 indices.",
+  "crown_surface": "crown-surface.json"
+}

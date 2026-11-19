@@ -1,0 +1,84 @@
+[
+  {
+    "asset": "forest_ground_04",
+    "map": "Diffuse",
+    "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_diff_1k.jpg",
+    "asset_page": "https://polyhaven.com/a/forest_ground_04",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "md5": "6ad9df4d731a238299806f739a26af83"
+  },
+  {
+    "asset": "forest_ground_04",
+    "map": "nor_gl",
+    "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_ground_04/forest_ground_04_nor_gl_1k.jpg",
+    "asset_page": "https://polyhaven.com/a/forest_ground_04",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "md5": "a010a0802c2d9a930c6f00d3b1f196d2"
+  },
+  {
+    "asset": "bark_brown_02",
+    "map": "Diffuse",
+    "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_diff_1k.jpg",
+    "asset_page": "https://polyhaven.com/a/bark_brown_02",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "md5": "6669cca520594bdca19f94084984ab72"
+  },
+  {
+    "asset": "bark_brown_02",
+    "map": "nor_gl",
+    "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_nor_gl_1k.jpg",
+    "asset_page": "https://polyhaven.com/a/bark_brown_02",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "md5": "1cad3fe0349a44df2d4d1c2859c79920"
+  },
+  {
+    "asset": "tree_small_02",
+    "map": "leaves_diff/nor_gl",
+    "asset_page": "https://polyhaven.com/a/tree_small_02",
+    "license": "CC0",
+    "crop_pixels_1k": [
+      292,
+      575,
+      390,
+      625
+    ],
+    "layer": 3,
+    "source_urls": [
+      "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tree_small_02/tree_small_02_leaves_diff_1k.jpg",
+      "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/tree_small_02/tree_small_02_leaves_nor_gl_1k.jpg"
+    ]
+  },
+  {
+    "asset": "ambientCG Grass005",
+    "layer": 0,
+    "asset_page": "https://ambientcg.com/view?id=Grass005",
+    "license": "CC0",
+    "license_url": "https://docs.ambientcg.com/license/",
+    "technique": "Procedural with Bitmap Elements",
+    "source_url": "https://acg-download.struffelproductions.com/file/ambientCG-Web/download/Grass005_MPzT24Bl/Grass005_1K-JPG.zip"
+  },
+  {
+    "asset": "tree_small_02",
+    "map": "Full photographic leaf RGB and embedded authored alpha, normal",
+    "asset_page": "https://polyhaven.com/a/tree_small_02",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "array_layer": 3,
+    "alpha_conversion": "Official diffuse PNG embedded RGBA8 alpha preserved. Do not clip separate 16-bit opacity through Pillow convert(L).",
+    "mip_conversion": "Linear color coverage-weighted filtering; five-layer RGBA8 array."
+  },
+  {
+    "asset": "jacaranda_tree",
+    "map": "Full photographic leaf RGB and embedded authored alpha, normal",
+    "asset_page": "https://polyhaven.com/a/jacaranda_tree",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "array_layer": 4,
+    "alpha_conversion": "Official diffuse PNG embedded RGBA8 alpha preserved. Do not clip separate 16-bit opacity through Pillow convert(L).",
+    "mip_conversion": "Linear color coverage-weighted filtering; five-layer RGBA8 array."
+  }
+]

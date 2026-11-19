@@ -1,0 +1,178 @@
+{
+  "description": "Only the direct dielectric reflection on the outer aggregate cover receives a grazing-angle shoulder. Explicit plants, trees, soil, inner forest, skylight and aerial scattering keep their previous shading.",
+  "method": "Outer stand material 1.9 < id < 2.1 and horizon payload >= 0. Fresnel F=.04+.96*(1-LoH)^5. The rolloff blends in smoothly across F=.12 to F=.16. Above the upper threshold the unresolved specular factor approaches aperture*(.04+.96/21), the cosine-weighted hemispherical Schlick average, monotonically from below. The chosen angular transition and use of canopy aperture are aggregate approximations, not a full leaf orientation integral.",
+  "compiledNativeGPU": {
+    "releaseWGSLModulesCompiled": 4,
+    "materialLightCases": 378,
+    "bitIdenticalControls": 270,
+    "fullyBoundedCases": 81,
+    "loweredCases": 90,
+    "validationErrors": 0
+  },
+  "glSourceBeforeCorrection": {
+    "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+    "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+    "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+    "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4"
+  },
+  "glSourceAfterCorrection": {
+    "surface-light.js": "23a30f92174cde27e8cdddfca9cd3b64049eb4163c181e8f0b9353184a66e78c",
+    "shaders.js": "547a214ad75c8cb57da566fd9d0aff895c2a1f4e8553a77b3ffb5f01ab57f57d",
+    "fallback.js": "338432b5927ff96f59a024b23d303e1497956b6e888e2c18779fb1a58921d445",
+    "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4"
+  },
+  "tools": [
+    "node tools/qa/stand-glint.mjs",
+    "python tools/qa/stand-glint-proof.py <record-dir> <output-dir> --revised-record <new-record-dir> --mode components --crop 600,410,700,160 --frame 0",
+    "tools/qa/outer-canopy-bounds.py"
+  ],
+  "sphericalBounds": {
+    "back": {
+      "frames": 12,
+      "maximumFresnelBound": 0.21332244444854861,
+      "posesWithEligibleTriangles": 12,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "rowRange": [
+        377,
+        549
+      ]
+    },
+    "meadow": {
+      "frames": 1,
+      "maximumFresnelBound": 0.11267718856065706,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "rowRange": null
+    },
+    "botany": {
+      "frames": 1,
+      "maximumFresnelBound": 0.0,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "rowRange": null
+    },
+    "meadow-reference": {
+      "frames": 1,
+      "maximumFresnelBound": 0.11267718856065706,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        3840,
+        2160
+      ],
+      "rowRange": null
+    },
+    "shade-walk": {
+      "frames": 12,
+      "maximumFresnelBound": 0.04722403966993842,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "rowRange": null
+    },
+    "front": {
+      "frames": 12,
+      "maximumFresnelBound": 0.04002888136155352,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "rowRange": null
+    },
+    "front-wind-reference": {
+      "frames": 12,
+      "maximumFresnelBound": 0.04002888136155352,
+      "posesWithEligibleTriangles": 0,
+      "resolution": [
+        3840,
+        2160
+      ],
+      "rowRange": null
+    }
+  },
+  "nativeUnoccludedControls": {
+    "meadow": {
+      "framesCompared": 1,
+      "changedFrames": [],
+      "method": "Full-size original and release material shaders compared on the aggregate draw alone; all foreground draws suppressed."
+    },
+    "botany": {
+      "framesCompared": 1,
+      "changedFrames": [],
+      "method": "Full-size original and release material shaders compared on the aggregate draw alone; all foreground draws suppressed."
+    },
+    "front-walk": {
+      "framesCompared": 12,
+      "changedFrames": [],
+      "method": "Full-size original and release material shaders compared on the aggregate draw alone; all foreground draws suppressed."
+    },
+    "shade-walk": {
+      "framesCompared": 12,
+      "changedFrames": [],
+      "method": "Full-size original and release material shaders compared on the aggregate draw alone; all foreground draws suppressed."
+    }
+  },
+  "linearRidgeComponents": {
+    "old": [
+      4.5608,
+      36.9682,
+      41.4977
+    ],
+    "release": [
+      4.5608,
+      10.5342,
+      41.4977
+    ],
+    "maxAbsoluteBodyAndAirPixelChange": 0,
+    "fullViewportROI": [
+      740,
+      450,
+      300,
+      33
+    ],
+    "semantics": "Mean RGB8 linear luminance decomposition in the exact same ROI before tone mapping: body, combined direct/environment specular, and air. The whole rectangular ROI includes any uncovered area."
+  },
+  "fullFrameBacklight": {
+    "resolution": [
+      1920,
+      1080
+    ],
+    "changedPixels": 44303,
+    "changedYRange": [
+      393,
+      511
+    ],
+    "originalRawPNGsha256": "098df1539923cf1a713c6271461d2be9145bf89ed36c2045419fd527477d01dc",
+    "correctedRawPNGsha256": "7830c110fe90e82b529ffef2210c0453690c2c21062cb8190a5c49ad0deb3440",
+    "sunAzimuth": 283,
+    "sunElevation": 38,
+    "wind": 0.8,
+    "time": 1,
+    "geometryAndCamera": "identical; native full draw of both independently recorded shaders"
+  },
+  "frontFrame9FullScene16pxControl": {
+    "method": "identical 16x16 off-axis render target with every production draw, before and after the correction",
+    "frameIndex": 9,
+    "region": [
+      1040,
+      504,
+      16,
+      16
+    ],
+    "pixelsCompared": 256,
+    "changedPixels": 0,
+    "maximumRGBChannelChange": 0
+  },
+  "provenance": "The paired Cycles study predates this outer-stand-only correction and measures fully covered foreground tree/grass pixels. The backlight image and film use corrected scene output. Opening, frontlit, shaded and spatial-reference views were originally captured before the correction; the spherical bounds and native spot/control replays qualify them separately."
+}

@@ -1,0 +1,50 @@
+{
+  "model": "Dielectric GGX with height-correlated Smith visibility, diffuse reflection and bounded diffuse transmission",
+  "solarIrradianceOverPi": [
+    1.3900941889092853,
+    1.4006541919420399,
+    1.271553495677232
+  ],
+  "solarCalibration": {
+    "source": "Poly Haven Kloofendal 48d Partly Cloudy Pure Sky, official 2K Radiance HDR",
+    "sourceURL": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+    "method": "Integrate source radiance times equirectangular texel solid angle inside a 1-degree cone around the measured solar disk, then divide by pi. 153 texels are included. The diffuse sky calculation excludes the solar peak separately.",
+    "sunDirectionInSourceCoordinates": [
+      0.5545620063,
+      0.7419804117,
+      0.3767307391
+    ],
+    "reproduce": "python tools/lighting/measure-sun.py SOURCE_2K.hdr",
+    "changedElevationApproximation": "RGB air-mass extinction relative to the source elevation, with coefficients [0.15,0.23,0.42]. This spectral tint approximation is not a complete atmospheric radiative-transfer solution."
+  },
+  "surfaceOptics": {
+    "F0": 0.04,
+    "roughness": {
+      "ground": 0.91,
+      "bark": 0.85,
+      "foliage": 0.66
+    },
+    "colorInterpretation": "Source diffuse color is reflected albedo. Transmitted color is min(0.95-reflected,reflected*transmissionRatio), channelwise, so the source reflected color is retained. GGX directional reflectance reserves the specular share of the energy budget.",
+    "transmissionRatio": {
+      "grass": 0.5,
+      "leaf": 0.32,
+      "opaque": 0.0
+    },
+    "DFG": "16 perceptual roughness levels in [0.42,1] times 32 view cosines. Each texel integrates the exact runtime correlated GGX direct lobe with 16,384 deterministic equal-area incident directions. Bilinear reconstruction uses the same values in WGSL and GLSL. Runtime quantizes these integrals to a 32x16 R8UNORM texture and uses hardware bilinear sampling. Quantization error is at most 1/510; shader constants are not dynamically indexed.",
+    "DFGReproduce": "python tools/lighting/build-dielectric-dfg.py",
+    "environmentSpecular": "GGX directional reflectance multiplies reflected diffuse-SH sky evaluated along the mirror direction, under the same crown/stand shelter. This low-frequency approximation restores grazing sky energy but does not reproduce detailed sharp cloud reflections.",
+    "normalFiltering": "Far-tree mean-normal length widens roughness and blends oriented sky irradiance toward the degree-zero SH mean."
+  },
+  "verification": {
+    "command": "node tools/qa/surface-light.mjs",
+    "actualCompiledWGSLMaterials": 108,
+    "incidentDirectionsPerHemisphere": 4096,
+    "maximumIntegratedReflectedPlusTransmittedEnergyForSupportedProbeCases": 0.9644367954180701,
+    "gpuValidationErrors": 0,
+    "scope": "White, green-leaf and mixed-color albedos across supported roughness, view-angle and transmission cases. These tests cover the local material model; scene-level indirect lighting and shelter remain approximate."
+  },
+  "references": [
+    "https://google.github.io/filament/main/filament.html",
+    "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/leaf.pdf"
+  ]
+}

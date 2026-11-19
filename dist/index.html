@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#18261d">
+    <meta name="description" content="Explore a procedurally generated forest with mature tree geometry, relit foliage impostors, photographic ground materials, and dynamic daylight.">
+    <title>CYBR Forest</title>
+    <link rel="preload" as="image" href="./preview.jpg">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <canvas id="scene" aria-label="Interactive forest. Click to look around, use W A S D to move, Q and E to descend and ascend."></canvas>
+
+    <div id="interface" class="interface">
+      <header class="topbar">
+        <a class="wordmark" href="./" aria-label="CYBR Forest home"><strong>CYBR</strong><span class="wordmark-divider">/</span><span>FOREST</span></a>
+        <div class="top-actions">
+          <button id="screenshot" class="icon-button" aria-label="Save a screenshot" title="Save screenshot">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5 9.5 3h5L16 5.5h3A2 2 0 0 1 21 7.5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-11a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12.5" r="4"/></svg>
+          </button>
+          <button id="fullscreen" class="icon-button" aria-label="Enter fullscreen" title="Fullscreen">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>
+          </button>
+          <button id="settingsToggle" class="icon-button settings-toggle" aria-label="Open renderer settings" aria-expanded="false" aria-controls="settings" title="Renderer settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div id="captureStatus" class="capture-status" hidden><span id="captureMessage" role="status" aria-live="polite"></span><a id="captureFile" download="CYBR-Forest.png" hidden>Save PNG</a><button id="dismissCapture" type="button" aria-label="Dismiss capture status">×</button></div>
+      <aside id="settings" class="settings-panel" hidden>
+        <div class="panel-header"><h1>Renderer</h1><button id="closeSettings" class="text-button" aria-label="Close settings">Close</button></div>
+        <div class="control-group">
+          <div class="control-label"><label for="daylight">Daylight</label></div>
+          <select id="daylight"><option value="front" selected>Front light</option><option value="cross">Crosslight</option><option value="back">Backlight</option><option value="custom" disabled>Custom</option></select>
+          <div class="control-label"><label for="sunElevation">Sun elevation</label><output id="sunElevationValue" for="sunElevation">38°</output></div>
+          <input id="sunElevation" type="range" min="15" max="85" step="1" value="38">
+          <div class="control-label"><label for="sunAzimuth">Sun direction</label><output id="sunAzimuthValue" for="sunAzimuth">103°</output></div>
+          <input id="sunAzimuth" type="range" min="0" max="360" step="1" value="103">
+          <div class="control-label"><label for="wind">Wind</label><output id="windValue" for="wind">0.8</output></div>
+          <input id="wind" type="range" min="0" max="2" step="0.1" value="0.8">
+        </div>
+        <div class="control-group select-group">
+          <label for="density">Tree population</label>
+          <select id="density"><option value="30000">30,000 trees</option><option value="90000" selected>90,000 trees</option><option value="250000">250,000 trees</option></select>
+          <label for="quality">Render quality</label>
+          <select id="quality"><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="high">High</option></select>
+          <label for="sky">Sky</label><select id="sky"><option value="photographic">Photographic HDR</option><option value="volumetric">Procedural clouds</option></select>
+          <label for="debug">Display</label>
+          <select id="debug"><option value="beauty">Lighting</option><option value="lod">Detail levels</option><option value="normal">Surface normals</option><option value="ao">Ambient occlusion</option></select>
+        </div>
+        <div class="render-stats" aria-label="Renderer statistics">
+          <div><span>Detailed trees</span><output id="nearCount">—</output></div>
+          <div><span>Medium foliage</span><output id="midCount">—</output></div>
+          <div><span>Distant silhouettes</span><output id="farCount">—</output></div>
+          <div><span>Visible triangles</span><output id="triangleCount">—</output></div>
+          <div><span>Total trees</span><output id="totalCount">90,000</output></div>
+        </div>
+        <a class="source-download" href="./CYBR-Forest-Source.zip" download>Download source (1 of 2)</a>
+        <a class="source-download" href="./CYBR-Forest-Trees.zip" download>Download source (2 of 2)</a>
+        <p class="panel-hint">Extract both source parts into the same folder.</p>
+        <a class="source-download" href="?view=stills">Browse the recorded views</a>
+        <a class="source-download" href="./evidence/meadow-motion.mp4">Watch the 1080p walk</a>
+        <a class="source-download" href="./evidence/meadow-before-after.jpg">Compare V8 and V9</a>
+        <a class="source-download" href="./evidence/lighting-reference.jpg">Compare raster and path-traced lighting</a>
+        <a class="source-download" href="./evidence/wind-detail-front.jpg">Inspect moving grass at two resolutions</a>
+        <a class="source-download" href="./CYBR-Forest-Captures.zip" download>Download all captures</a>
+        <a class="source-download" href="./evidence/flicker-comparison.mp4">Compare V7 and V8 flicker</a>
+        <p class="panel-hint">WASD to move · Q / E for height<br>Shift to fly faster · H to hide controls</p>
+      </aside>
+
+      <footer class="bottom-bar">
+        <nav class="view-selector" aria-label="Camera viewpoints">
+          <button class="view-button active" data-view="meadow" aria-pressed="true">Meadow</button>
+          <button class="view-button" data-view="forest" aria-pressed="false">Forest</button>
+          <button class="view-button" data-view="aerial" aria-pressed="false">Aerial</button>
+          <span class="view-divider" aria-hidden="true"></span>
+          <button id="tour" class="tour-button" aria-label="Start camera tour" aria-pressed="false" title="Camera tour"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg><span>Tour</span></button>
+        </nav>
+        <span id="movementHint" class="movement-hint">Click to explore <span>·</span> WASD to move</span>
+        <div class="performance" aria-label="Live performance"><span><strong id="fps">—</strong><span class="stat-unit">fps</span></span><span class="performance-divider"></span><span><strong id="treeCount">—</strong><span class="stat-unit">visible trees</span></span></div>
+      </footer>
+      <div id="joystick" class="joystick" aria-label="Drag to move"><div class="joystick-ring"></div><div id="joystickKnob" class="joystick-knob"></div></div>
+      <div id="touchHint" class="touch-hint">Drag right side to look</div>
+    </div>
+
+    <section id="renderedViews" aria-label="Recorded views of CYBR Forest" hidden>
+      <img id="renderedFrame" class="gallery-media" alt="Meadow captured from CYBR Forest">
+      <video id="renderedWalk" class="gallery-media" preload="none" playsinline controls loop hidden aria-label="Recorded walk through the meadow"></video>
+      <header class="gallery-header"><a class="wordmark" href="./"><strong>CYBR</strong><span class="wordmark-divider">/</span><span>FOREST</span></a><a id="saveRendered" class="gallery-link" download>Save frame</a></header>
+      <div class="gallery-footer"><div class="gallery-caption"><span id="galleryStatus"></span><div class="gallery-links"><a class="gallery-link" href="./">Open live view</a><a class="gallery-link" href="./evidence/lighting-reference.jpg">Lighting comparison</a></div></div>
+      <nav class="view-selector" aria-label="Recorded views"><button type="button" class="view-button" data-capture="front">Front light</button><button type="button" class="view-button" data-capture="cross">Crosslight</button><button type="button" class="view-button" data-capture="back">Backlight</button><button type="button" class="view-button" data-capture="shade">Woodland</button><button type="button" class="view-button" data-capture="botany">Underfoot</button><button type="button" class="view-button" data-capture="walk">Walk</button></nav></div>
+    </section>
+    <div id="loading" class="loading-screen">
+      <img class="loading-landscape" src="./preview.jpg" alt="Meadow view captured from this forest renderer" fetchpriority="high"><div class="loading-content" role="status"><p id="loadingText">Preparing the landscape…</p><div class="loading-track"><div id="loadingProgress"></div></div></div>
+    </div>
+    <div id="errorPanel" class="error-panel" role="alert" hidden><h1>Unable to start the renderer</h1><p id="errorText"></p><figure class="render-preview"><img src="./preview.jpg" alt="Forest frame produced by this renderer"><figcaption>Rendered preview</figcaption></figure><a class="source-download" href="./evidence/meadow-motion.mp4">Watch the camera recording</a><a class="source-download" href="./CYBR-Forest-Source.zip" download>Download source (1 of 2)</a><a class="source-download" href="./CYBR-Forest-Trees.zip" download>Download source (2 of 2)</a><button id="retry" type="button">Try again</button></div>
+    <script type="module" src="./main.js?revision=9"></script>
+  </body>
+</html>

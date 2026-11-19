@@ -1,0 +1,58 @@
+{
+  "name": "jacaranda",
+  "width": 2048,
+  "height": 512,
+  "columns": 8,
+  "rows": 2,
+  "cellSize": 256,
+  "projectionSize": [
+    27.040502548217773,
+    24.468875885009766
+  ],
+  "center": [
+    0.0,
+    9.734437942504883,
+    0.0
+  ],
+  "elevationRows": [
+    0.4363323129985824,
+    0.0
+  ],
+  "source": "https://polyhaven.com/a/jacaranda_tree",
+  "license": "CC0",
+  "sourceMesh": "Full unreduced original geometry with official photographic diffuse PNG/JPEG and authored embedded RGBA8 leaf alpha",
+  "colorSpace": "linear RGBA8 albedo, alpha 2x supersampled coverage",
+  "normalSpace": "Model-space normal encoded [0,1]; vector length retains unresolved normal variance. Alpha stores cosine-weighted upper-hemisphere visibility through the source leaf area density at the reconstructed surface.",
+  "positionSpace": "model XYZ normalized within sourceBounds; alpha leaf fraction (1 leaf, 0 wood)",
+  "triangles": 3863832,
+  "sourceBounds": [
+    [
+      -12.92025089263916,
+      0.0,
+      -9.953813552856445
+    ],
+    [
+      11.496798515319824,
+      19.468875885009766,
+      9.200760841369629
+    ]
+  ],
+  "leafBounds": [
+    [
+      -12.92025089263916,
+      2.2493324279785156,
+      -9.953813552856445
+    ],
+    [
+      11.496798515319824,
+      19.468875885009766,
+      9.200760841369629
+    ]
+  ],
+  "skyAperture": {
+    "sourceDensitySize": 96,
+    "cosineWeightedDirections": 64,
+    "extinction": 0.5,
+    "details": "tools/trees/bake-sky-aperture.py"
+  }
+}

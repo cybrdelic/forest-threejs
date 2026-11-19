@@ -1,0 +1,125 @@
+{
+  "baselineCommit": "6976a150a0cf82c7d71b33d82013f880f83a928e",
+  "method": "Render the same close-meadow mesh, time, perspective, past camera, jitter and wind on each side. Use released V8 temporal resolve for baseline and V9 per-vertex deformation plus temporal resolve for comparison. Two constant radiances isolate geometric coverage. Compare the spatially integrated ground truth in luma levels out of 255.",
+  "reference": "At every pose render each axis at 8 times the output resolution with four MSAA samples, then area-average 256 spatial samples per output pixel. No temporal history in reference.",
+  "edgeSelection": "Include interior pixels when the five-point reference neighborhood spans at least six luma levels or the reference changes at least three between frames. Exclude an eight-frame warm-up. Counts accumulate across the remaining 24 frames.",
+  "metrics": {
+    "meanAbsLumaError": "Mean absolute luma difference from reference.",
+    "gradientError": "Mean absolute error of the horizontal and vertical first spatial differences.",
+    "motionChangeError": "Mean absolute error of successive frames\u2019 luma changes versus reference."
+  },
+  "scope": "Native software WebGPU. The first two runs frame both plant cells. The third renders the center 112 by 80 pixels of a 1920 by 1080 projection, at eye height 1.58 m. These isolated two-tone tests do not measure full-scene lighting, hardware frame pacing, or subjective realism.",
+  "reproduction": {
+    "test": "tools/qa/wind-history.mjs",
+    "baselineEnvironment": "WIND_QA_BASELINE points to the V8 checkout\u2019s dist/temporal.js",
+    "fixedCamera": {},
+    "lateralCamera": {
+      "WIND_QA_CAMERA_STEP": ".003"
+    },
+    "native1080pProjectionCrop": {
+      "WIND_QA_CAMERA_STEP": ".003",
+      "WIND_QA_NATIVE_CROP": "1"
+    }
+  },
+  "tests": {
+    "fixedCamera": {
+      "width": 112,
+      "height": 80,
+      "frames": 32,
+      "measuredFrames": 24,
+      "meshTriangles": 803,
+      "instances": 2,
+      "supersample": 8,
+      "subsamplesPerReferencePixel": 256,
+      "isolatedSilhouette": true,
+      "baselineTemporal": "archived",
+      "wind": 1.8,
+      "cameraStepMetres": 0,
+      "projectionExtent": [
+        112,
+        80
+      ],
+      "frameIntervalSeconds": 0.06666666666666667,
+      "baselineV8": {
+        "edgePixels": 74158,
+        "meanAbsLumaError": 13.747400139986869,
+        "rmse": 21.35299442644393,
+        "gradientError": 18.225934943951188,
+        "motionChangeError": 3.6700248847376447
+      },
+      "productionV9": {
+        "edgePixels": 74158,
+        "meanAbsLumaError": 12.95468562954423,
+        "rmse": 19.315785545692638,
+        "gradientError": 17.317796468856912,
+        "motionChangeError": 3.507065532450479
+      }
+    },
+    "lateralCamera": {
+      "width": 112,
+      "height": 80,
+      "frames": 32,
+      "measuredFrames": 24,
+      "meshTriangles": 803,
+      "instances": 2,
+      "supersample": 8,
+      "subsamplesPerReferencePixel": 256,
+      "isolatedSilhouette": true,
+      "baselineTemporal": "archived",
+      "wind": 1.8,
+      "cameraStepMetres": 0.003,
+      "projectionExtent": [
+        112,
+        80
+      ],
+      "frameIntervalSeconds": 0.06666666666666667,
+      "baselineV8": {
+        "edgePixels": 72420,
+        "meanAbsLumaError": 22.70546638327585,
+        "rmse": 31.89505274105965,
+        "gradientError": 25.91969751952202,
+        "motionChangeError": 15.65968058000642
+      },
+      "productionV9": {
+        "edgePixels": 72420,
+        "meanAbsLumaError": 17.00720530907379,
+        "rmse": 23.129050885636758,
+        "gradientError": 21.08542904175635,
+        "motionChangeError": 14.143148676027616
+      }
+    },
+    "native1080pProjectionCrop": {
+      "width": 112,
+      "height": 80,
+      "projectionExtent": [
+        1920,
+        1080
+      ],
+      "frameIntervalSeconds": 0.03333333333333333,
+      "frames": 32,
+      "measuredFrames": 24,
+      "meshTriangles": 803,
+      "instances": 2,
+      "supersample": 8,
+      "subsamplesPerReferencePixel": 256,
+      "isolatedSilhouette": true,
+      "baselineTemporal": "archived",
+      "wind": 1.8,
+      "cameraStepMetres": 0.003,
+      "baselineV8": {
+        "edgePixels": 125719,
+        "meanAbsLumaError": 17.06298428073193,
+        "rmse": 27.481216609847436,
+        "gradientError": 22.1974630501254,
+        "motionChangeError": 27.291289529330175
+      },
+      "productionV9": {
+        "edgePixels": 125719,
+        "meanAbsLumaError": 16.625588471526573,
+        "rmse": 26.076951485039547,
+        "gradientError": 21.061212628274543,
+        "motionChangeError": 26.379351412235657
+      }
+    }
+  }
+}

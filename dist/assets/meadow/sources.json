@@ -1,0 +1,1004 @@
+[
+  {
+    "name": "bermuda",
+    "sourceAsset": "grass_medium_01",
+    "source_url": "https://polyhaven.com/a/grass_medium_01",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "authors": {
+      "Rob Tuytel": "Photography",
+      "Rico Cilliers": "Modeling"
+    },
+    "vertex_stride_floats": 12,
+    "material": 7,
+    "array_layer": 5,
+    "vertices": 64,
+    "triangles": 32,
+    "bounds": [
+      [
+        -0.30000001192092896,
+        0.0,
+        -0.30000001192092896
+      ],
+      [
+        0.30000001192092896,
+        0.3799999952316284,
+        0.30000001192092896
+      ]
+    ],
+    "representation": "16 orthogonal depth slabs: 6X,6Z,4Y. Each slab is baked from genuine full original photographic-UV grass geometry clipped to its source depth interval. No generated scenery or synthetic blade geometry.",
+    "sourcePlantCount": 64,
+    "sourceTriangleCount": 120487,
+    "unclippedSourceLeafAreaIndex": 2.5090126565210933,
+    "atlasSize": [
+      512,
+      512
+    ],
+    "atlasCells": [
+      4,
+      4
+    ],
+    "cellPixels": 128,
+    "supersampling": 2,
+    "albedoColorSpace": "sRGB RGB with linear opacity. Original source SRGB8 texture sampled to linear MRT, coverage-weighted resolve, encoded back to sRGB for application SRGB8 material array.",
+    "normalSpace": "Tangent card basis: right,-up,captureview. Normal oriented toward capture before supersample resolve. UVV=0top,1bottom.",
+    "opacityMean": 0.11020804012522976,
+    "alphaTestCoverage": 0.1378326416015625,
+    "slices": [
+      {
+        "tile": 0,
+        "axis": "z",
+        "lower": -0.3,
+        "upper": -0.19999999999999998,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 1,
+        "axis": "z",
+        "lower": -0.19999999999999998,
+        "upper": -0.09999999999999998,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 2,
+        "axis": "z",
+        "lower": -0.09999999999999998,
+        "upper": 2.7755575615628914e-17,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 3,
+        "axis": "z",
+        "lower": 5.551115123125783e-17,
+        "upper": 0.10000000000000006,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 4,
+        "axis": "z",
+        "lower": 0.10000000000000003,
+        "upper": 0.20000000000000004,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 5,
+        "axis": "z",
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 6,
+        "axis": "x",
+        "lower": -0.3,
+        "upper": -0.19999999999999998,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 7,
+        "axis": "x",
+        "lower": -0.19999999999999998,
+        "upper": -0.09999999999999998,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 8,
+        "axis": "x",
+        "lower": -0.09999999999999998,
+        "upper": 2.7755575615628914e-17,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 9,
+        "axis": "x",
+        "lower": 5.551115123125783e-17,
+        "upper": 0.10000000000000006,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 10,
+        "axis": "x",
+        "lower": 0.10000000000000003,
+        "upper": 0.20000000000000004,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 11,
+        "axis": "x",
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 12,
+        "axis": "y",
+        "lower": 0.0,
+        "upper": 0.095,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 13,
+        "axis": "y",
+        "lower": 0.095,
+        "upper": 0.19,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 14,
+        "axis": "y",
+        "lower": 0.19,
+        "upper": 0.28500000000000003,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 15,
+        "axis": "y",
+        "lower": 0.28500000000000003,
+        "upper": 0.38,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      }
+    ],
+    "runtimeCardOpaqueAreaSquareMetres": 0.573961669921875,
+    "runtimeCardAreaIndex": 1.5943379720052084,
+    "sourceFiltering": "Source RGB nearest-dilated from alpha>.9 opaque pixels, linear-light alpha-weighted source mipchain explicitly uploaded level by level as SRGB8_ALPHA8. Raw hidden white RGB is never averaged unweighted into visible blades. Corrected source opaque mean linearRGB approximately[.106,.125,.020]."
+  },
+  {
+    "name": "grass",
+    "sourceAsset": "grass_medium_01",
+    "source_url": "https://polyhaven.com/a/grass_medium_01",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "authors": {
+      "Rob Tuytel": "Photography",
+      "Rico Cilliers": "Modeling"
+    },
+    "vertex_stride_floats": 12,
+    "material": 8,
+    "array_layer": 6,
+    "vertices": 64,
+    "triangles": 32,
+    "bounds": [
+      [
+        -0.30000001192092896,
+        0.0,
+        -0.30000001192092896
+      ],
+      [
+        0.30000001192092896,
+        0.3799999952316284,
+        0.30000001192092896
+      ]
+    ],
+    "representation": "16 orthogonal depth slabs: 6X,6Z,4Y. Each slab is baked from genuine full original photographic-UV grass geometry clipped to its source depth interval. No generated scenery or synthetic blade geometry.",
+    "sourcePlantCount": 64,
+    "sourceTriangleCount": 109981,
+    "unclippedSourceLeafAreaIndex": 2.267723726234762,
+    "atlasSize": [
+      512,
+      512
+    ],
+    "atlasCells": [
+      4,
+      4
+    ],
+    "cellPixels": 128,
+    "supersampling": 2,
+    "albedoColorSpace": "sRGB RGB with linear opacity. Original source SRGB8 texture sampled to linear MRT, coverage-weighted resolve, encoded back to sRGB for application SRGB8 material array.",
+    "normalSpace": "Tangent card basis: right,-up,captureview. Normal oriented toward capture before supersample resolve. UVV=0top,1bottom.",
+    "opacityMean": 0.10791432997759651,
+    "alphaTestCoverage": 0.13707351684570312,
+    "slices": [
+      {
+        "tile": 0,
+        "axis": "z",
+        "lower": -0.3,
+        "upper": -0.19999999999999998,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 1,
+        "axis": "z",
+        "lower": -0.19999999999999998,
+        "upper": -0.09999999999999998,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 2,
+        "axis": "z",
+        "lower": -0.09999999999999998,
+        "upper": 2.7755575615628914e-17,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 3,
+        "axis": "z",
+        "lower": 5.551115123125783e-17,
+        "upper": 0.10000000000000006,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 4,
+        "axis": "z",
+        "lower": 0.10000000000000003,
+        "upper": 0.20000000000000004,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 5,
+        "axis": "z",
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "view": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 6,
+        "axis": "x",
+        "lower": -0.3,
+        "upper": -0.19999999999999998,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 7,
+        "axis": "x",
+        "lower": -0.19999999999999998,
+        "upper": -0.09999999999999998,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 8,
+        "axis": "x",
+        "lower": -0.09999999999999998,
+        "upper": 2.7755575615628914e-17,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 9,
+        "axis": "x",
+        "lower": 5.551115123125783e-17,
+        "upper": 0.10000000000000006,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 10,
+        "axis": "x",
+        "lower": 0.10000000000000003,
+        "upper": 0.20000000000000004,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 11,
+        "axis": "x",
+        "lower": 0.2,
+        "upper": 0.30000000000000004,
+        "view": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "right": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "up": [
+          -0.0,
+          1.0,
+          0.0
+        ],
+        "size": [
+          0.6,
+          0.38
+        ]
+      },
+      {
+        "tile": 12,
+        "axis": "y",
+        "lower": 0.0,
+        "upper": 0.095,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 13,
+        "axis": "y",
+        "lower": 0.095,
+        "upper": 0.19,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 14,
+        "axis": "y",
+        "lower": 0.19,
+        "upper": 0.28500000000000003,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      },
+      {
+        "tile": 15,
+        "axis": "y",
+        "lower": 0.28500000000000003,
+        "upper": 0.38,
+        "view": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "right": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "size": [
+          0.6,
+          0.6
+        ]
+      }
+    ],
+    "runtimeCardOpaqueAreaSquareMetres": 0.559695556640625,
+    "runtimeCardAreaIndex": 1.5547098795572916,
+    "sourceFiltering": "Source RGB nearest-dilated from alpha>.9 opaque pixels, linear-light alpha-weighted source mipchain explicitly uploaded level by level as SRGB8_ALPHA8. Raw hidden white RGB is never averaged unweighted into visible blades. Corrected source opaque mean linearRGB approximately[.106,.125,.020]."
+  },
+  {
+    "name": "celandine",
+    "sourceAsset": "celandine_01",
+    "source_url": "https://polyhaven.com/a/celandine_01",
+    "source_metadata_url": "https://api.polyhaven.com/files/celandine_01",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "authors": {
+      "Rob Tuytel": "Photography",
+      "Rico Cilliers": "modeling"
+    },
+    "vertex_stride_floats": 12,
+    "vertex_layout": [
+      "position.xyz",
+      "normal.xyz",
+      "white linear tint.rgb",
+      "material",
+      "source UV.u",
+      "source UV.v"
+    ],
+    "material": 9,
+    "array_layer": 7,
+    "vertices": 4235,
+    "triangles": 4301,
+    "bounds": [
+      [
+        -0.12008963525295258,
+        0.0,
+        -0.10453974455595016
+      ],
+      [
+        0.13705752789974213,
+        0.17558737099170685,
+        0.08180022984743118
+      ]
+    ],
+    "conversion": "Original authored source geometry, original photographic UVs, native metre scale. Ground each individual specimen, ignore catalog-layout node translations, rotate/place authored variants into ground patch. No synthetic blade replacement or leaf-area enlargement. Diffuse PNG embedded RGBA8 alpha retained. Source RGB nearest-dilated only outside alpha mask. Normal GL source renormalized after512pxresize.",
+    "components": [
+      {
+        "sourceMesh": 2,
+        "sourceTriangleCount": 4301,
+        "placement": [
+          0,
+          0
+        ],
+        "yaw": 0
+      }
+    ],
+    "alphaOpaqueCoverage": 0.4040966033935547
+  },
+  {
+    "name": "dandelion",
+    "sourceAsset": "dandelion_01",
+    "source_url": "https://polyhaven.com/a/dandelion_01",
+    "source_metadata_url": "https://api.polyhaven.com/files/dandelion_01",
+    "license": "CC0",
+    "license_url": "https://polyhaven.com/license",
+    "authors": {
+      "Rob Tuytel": "Photography",
+      "Rico Cilliers": "Modeling"
+    },
+    "vertex_stride_floats": 12,
+    "vertex_layout": [
+      "position.xyz",
+      "normal.xyz",
+      "white linear tint.rgb",
+      "material",
+      "source UV.u",
+      "source UV.v"
+    ],
+    "material": 10,
+    "array_layer": 8,
+    "vertices": 1355,
+    "triangles": 2080,
+    "bounds": [
+      [
+        -0.12014978379011154,
+        0.0,
+        -0.08965444564819336
+      ],
+      [
+        0.09371808916330338,
+        0.047472551465034485,
+        0.1156395971775055
+      ]
+    ],
+    "conversion": "Original authored source geometry, original photographic UVs, native metre scale. Ground each individual specimen, ignore catalog-layout node translations, rotate/place authored variants into ground patch. No synthetic blade replacement or leaf-area enlargement. Diffuse PNG embedded RGBA8 alpha retained. Source RGB nearest-dilated only outside alpha mask. Normal GL source renormalized after512pxresize.",
+    "components": [
+      {
+        "sourceMesh": 4,
+        "sourceTriangleCount": 2080,
+        "placement": [
+          0,
+          0
+        ],
+        "yaw": 0
+      }
+    ],
+    "alphaOpaqueCoverage": 0.48950672149658203
+  }
+]

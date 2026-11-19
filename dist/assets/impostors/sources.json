@@ -1,0 +1,35 @@
+{
+  "license": "CC0-1.0",
+  "derivation": "Sixteen orthographic views rasterized from full unreduced original authored tree meshes, sampled official photographic diffuse RGBA PNGs with their authored embedded leaf alpha preserved exactly. Two-times supersampling resolves fine true-alpha leaflets. Model-space normal RGB is relit at runtime; vector length retains unresolved normal variance. Normal-atlas alpha is a cosine-weighted hemispherical opening integrated using 64 directions through the 96³ source leaf-density volume. Color-atlas alpha is rasterized geometry coverage. Transparent borders contain nearest-covered colors and normals to avoid dark minification fringes. V5 orients each visible source normal toward its bake camera before coverage-weighted averaging. A third atlas stores coverage-weighted actual source model positions and leaf-versus-wood fraction, enabling directional crown extinction from leaf positions at runtime.",
+  "oak": {
+    "source": "https://polyhaven.com/a/tree_small_02",
+    "sourceType": "Authored geometry with photographic PBR material colors",
+    "renderedTriangles": 2062487,
+    "scale": "Project tree mesh, 15.94 m tall"
+  },
+  "jacaranda": {
+    "source": "https://polyhaven.com/a/jacaranda_tree",
+    "sourceType": "Authored geometry with photographic PBR material colors",
+    "renderedTriangles": 3863832,
+    "scale": "Native source scale, 19.47 m tall"
+  },
+  "views": {
+    "yawCount": 8,
+    "elevationDegrees": [
+      25,
+      0
+    ],
+    "cellResolution": 256
+  },
+  "limitations": [
+    "The hemispherical aperture is a scalar. Anisotropic sky openings and multiple foliage bounces remain approximations.",
+    "Each source view captures one visible depth layer. A source point reconstructed from interpolated atlas texels can miss hidden branches and back layers."
+  ],
+  "filtering": "All three atlases use joint geometry-coverage-weighted mipmaps. Mean normals retain variance, actual source positions remain in model space, and material fractions preserve mixed wood/leaf texels.",
+  "alphaDecoding": "The source diffuse RGBA8 PNG alpha is used directly. Separate I;16 opacity maps are never clipped via Pillow convert(L), which would turn faint alpha into opaque white texels.",
+  "positionEncoding": {
+    "rgb": "Actual source model XYZ normalized within per-species sourceBounds",
+    "alpha": "Coverage-weighted leaf fraction, 1 for leaf material and 0 for wood",
+    "purpose": "Directional source-local crown sunlight extinction; geometry depth remains an impostor plane"
+  }
+}

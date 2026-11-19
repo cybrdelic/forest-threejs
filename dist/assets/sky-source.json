@@ -1,0 +1,71 @@
+{
+  "name": "Kloofendal 48d Partly Cloudy (Pure Sky)",
+  "source_url": "https://polyhaven.com/a/kloofendal_48d_partly_cloudy_puresky",
+  "download_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/kloofendal_48d_partly_cloudy_puresky_2k.hdr",
+  "license": "CC0",
+  "license_url": "https://polyhaven.com/license",
+  "authors": {
+    "Greg Zaal": "Original",
+    "Jarod Guest": "Sky Edits"
+  },
+  "width": 2048,
+  "height": 1024,
+  "format": "R11G11B10 packed unsigned float, little-endian",
+  "channels": 3,
+  "bytes_per_pixel": 4,
+  "mip_levels": 1,
+  "source_md5": "2eba3a4d7eeb23cbfbeca364c97e7980",
+  "sun_pixel": [
+    1218,
+    239
+  ],
+  "sun_uv": [
+    0.594970703125,
+    0.23388671875
+  ],
+  "sun_direction": [
+    0.5545620062863689,
+    0.7419804117208311,
+    0.37673073913104493
+  ],
+  "sun_elevation_degrees": 47.90039062500001,
+  "sun_azimuth_degrees": 34.189453125,
+  "sun_peak_rgb": [
+    71168.0,
+    73216.0,
+    70144.0
+  ],
+  "upper_hemisphere_mean_rgb_excluding_sun": [
+    0.3454999274407264,
+    0.4129248079846182,
+    0.6161689350715132
+  ],
+  "lower_hemisphere_mean_rgb_excluding_sun": [
+    0.19234116375987115,
+    0.22428002030117966,
+    0.3204178360660853
+  ],
+  "recommended_preview_exposure": 1.088891001419361,
+  "original_max_rgb": 73216.0,
+  "float16_clipped_components": 6,
+  "coordinate_mapping": "u=atan2(direction.z,direction.x)/(2*pi)+0.5; v=acos(clamp(direction.y,-1,1))/pi; image row0northpole(+Y), column0azimuth-pi",
+  "header": [
+    "#?RADIANCE",
+    "FORMAT=32-bit_rle_rgbe",
+    "",
+    "-Y 1024 +X 2048"
+  ],
+  "detail": {
+    "source_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/8k/kloofendal_48d_partly_cloudy_puresky_8k.hdr",
+    "source_md5": "28091ec4839b564f57f780c316d6e9fd",
+    "width": 8192,
+    "height": 2048,
+    "mip_levels": 14,
+    "file": "sky-detail.bin",
+    "encoding": "8-bit log2 luminance ratio at 48 codes/stop; neutral code 128. Mips integrated in linear gain, DEFLATE per level. Upper hemisphere only.",
+    "reference": "8192x4096 original Radiance HDR divided by the bilinear R11G11B10 base luminance in linear space",
+    "lookup": "u follows full-sphere mapping; v=2*acos(y)/pi",
+    "chromaticity": "Original 2048x1024 HDR base supplies chromaticity and absolute radiance. High-resolution detail restores source luminance.",
+    "max_texture_limit": "Unsupported largest mip levels are skipped on smaller GPUs."
+  }
+}

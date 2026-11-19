@@ -1,0 +1,79 @@
+{
+  "coefficients": [
+    [
+      0.7134445495496059,
+      0.8591659583340345,
+      1.1856556342323148
+    ],
+    [
+      0.36958696689100795,
+      0.4196382383327167,
+      0.663911573650815
+    ],
+    [
+      0.1010905819744578,
+      0.12163414132570861,
+      0.16923683188495897
+    ],
+    [
+      0.15597718603493274,
+      0.19384765628707107,
+      0.2815897088246073
+    ],
+    [
+      0.06257787853335857,
+      0.07623050525685512,
+      0.11220258139681606
+    ],
+    [
+      0.041736068387548286,
+      0.04834670533925059,
+      0.06724980900484967
+    ],
+    [
+      -0.012710686340535163,
+      -0.014984557194786014,
+      -0.02399767043293085
+    ],
+    [
+      0.034547789558670564,
+      0.03997773981850341,
+      0.055649093768080464
+    ],
+    [
+      -0.017840594621293192,
+      -0.014064861359939012,
+      -0.012430041020089112
+    ]
+  ],
+  "sunExclusionLuminance": 13.15431687500085,
+  "upperMean": [
+    0.37323439674423997,
+    0.4391686645100747,
+    0.6454034964416304
+  ],
+  "horizontalIrradianceOverPi": [
+    0.3904457153716547,
+    0.45563629573306547,
+    0.6723085617087946
+  ],
+  "groundBounceRGB": [
+    0.0292834286528741,
+    0.04556362957330655,
+    0.023530799659807814
+  ],
+  "groundAlbedoAssumption": [
+    0.075,
+    0.1,
+    0.035
+  ],
+  "sourceAsset": "Poly Haven Kloofendal 48d Partly Cloudy Pure Sky",
+  "sourceRuntimeFile": "environment.bin",
+  "sourceFormat": "2048x1024 R11G11B10 packed linear HDR",
+  "basis": "Real orthonormal spherical harmonics in source xyz; order [Y00,Y1-1,Y10,Y11,Y2-2,Y2-1,Y20,Y21,Y22]",
+  "convolution": "Diffuse irradiance divided by pi, Lambert convolution factors [1,2/3,2/3,2/3,1/4,1/4,1/4,1/4,1/4]",
+  "solarTreatment": "Upper-sky luminance above 99.9 percentile (13.154316875) replaced by non-solar weighted sky mean before integration. The runtime separately evaluates the directional sun.",
+  "groundTreatment": "Lower hemisphere replaced by Lambertian ground bounce using diffuse ground albedo [0.075,0.10,0.035] and measured upper-sky horizontal irradiance. This is a declared scene approximation.",
+  "rotation": "Source sun azimuth minus current sun azimuth, identical vertical-axis rotation to the photographic background.",
+  "backgroundExposureTreatment": "The separate 1.25 photographic background exposure adjustment is not multiplied into diffuse-light energy."
+}

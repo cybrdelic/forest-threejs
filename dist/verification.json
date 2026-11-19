@@ -1,0 +1,208 @@
+{
+  "revision": "raster-forest-v9",
+  "baselineCommit": "6976a150a0cf82c7d71b33d82013f880f83a928e",
+  "renderer": "Interactive WebGPU rasterization or WebGL2. Recorded views are labeled in browsers without a live context.",
+  "opening": {
+    "file": "preview.jpg",
+    "sha256": "7b0519f557a50f32b923d60cbbf64010fd7eebe09ba8506bfe12d7201d431757",
+    "lighting": "front",
+    "sunElevation": 38,
+    "sunAzimuth": 103,
+    "treeInstances": 90000,
+    "additionalWoodyPlacements": 48
+  },
+  "evidence": {
+    "fiveViewsAndWindyWalks": "evidence/field-verification.json",
+    "webgpu": "evidence/webgpu-verification.json",
+    "pathTracedLighting": "evidence/lighting-reference.json",
+    "windReprojection": "evidence/wind-history.json",
+    "backlitRidge": "evidence/stand-glint.json"
+  },
+  "captureConditions": {
+    "comparison": "The V8/V9 landscape composition and supersampled comparison use 48\u00b0 elevation and 345\u00b0 azimuth. The opening front-lit image uses 38\u00b0 and 103\u00b0.",
+    "walking": "Three independently rendered native 1920\u00d71080 sequences with advancing camera and wind. Offline software frame times are separate from the encoded presentation cadence.",
+    "captureProvenance": "A late specular correction is isolated to the distant aggregate canopy in strong backlight. The supplied evidence records the original capture hashes, its control poses and the corrected backlit render.",
+    "offlineLighting": "Production local geometry compared with Cycles at 96 spp. Whole valley lighting is approximated.",
+    "historicalVideo": "evidence/flicker-comparison.mp4 compares V7 to V8. The V9 comparison is in wind-history.json."
+  },
+  "geometryChecks": {
+    "woodyForms": [
+      {
+        "form": "Open-grown forked broadleaf",
+        "baseStems": 1,
+        "connectedAxes": 1849,
+        "leafSurfaces": 15960,
+        "apertures": 241,
+        "plants": 8,
+        "heightMetres": 12.046805381774902,
+        "radiusMetres": 7.759366473324374,
+        "triangles": [
+          127848,
+          55384
+        ],
+        "visible": [
+          3,
+          3
+        ],
+        "hash": "dc68c0c7976340ad78e1f3dfed8133dd8ddbe15ea2662c1eae4a2900cd8efd0b"
+      },
+      {
+        "form": "Coppice stool",
+        "baseStems": 7,
+        "connectedAxes": 910,
+        "leafSurfaces": 9828,
+        "apertures": 243,
+        "plants": 16,
+        "heightMetres": 2.777085065841675,
+        "radiusMetres": 2.4739358332048544,
+        "triangles": [
+          71736,
+          31472
+        ],
+        "visible": [
+          0,
+          12
+        ],
+        "hash": "9684d5925c969f08d5ceaf718b6eebf429659388bc7364d980d56c5a9846ee36"
+      },
+      {
+        "form": "Thorn scrub",
+        "baseStems": 5,
+        "connectedAxes": 470,
+        "leafSurfaces": 3000,
+        "apertures": 213,
+        "plants": 14,
+        "heightMetres": 1.8238227367401123,
+        "radiusMetres": 2.5130118451028647,
+        "triangles": [
+          29160,
+          12220
+        ],
+        "visible": [
+          0,
+          11
+        ],
+        "hash": "ef84bcfd4899a0b6d336efc899b3033dc6382e5684eff954f44e6d24cfa28f4b"
+      },
+      {
+        "form": "Woodland sapling",
+        "baseStems": 1,
+        "connectedAxes": 86,
+        "leafSurfaces": 923,
+        "apertures": 119,
+        "plants": 10,
+        "heightMetres": 4.654965400695801,
+        "radiusMetres": 1.2603189963295978,
+        "triangles": [
+          6732,
+          2954
+        ],
+        "visible": [
+          0,
+          7
+        ],
+        "hash": "b6fcb031159f2abe451a2ee8e9859e8123ddd755bdf9a04aac883886bbed73b1"
+      }
+    ],
+    "botany": {
+      "counts": [
+        97,
+        260,
+        450,
+        447
+      ],
+      "close": 803,
+      "farCounts": [
+        32,
+        32,
+        60,
+        160
+      ],
+      "community": [
+        102088,
+        37858,
+        30120,
+        9934
+      ],
+      "roots": 2807,
+      "swardShadow": 2254021,
+      "herbShadow": 538534,
+      "total": 2792555,
+      "empty": 1365,
+      "tiny": 3421,
+      "laid": 16424,
+      "equal": 7728,
+      "heightError": 1.681254394725329e-05,
+      "buildMS": 299.79238200000003
+    },
+    "pasture": {
+      "samples": 14763,
+      "reliefRangeMetres": [
+        -8.648357519966284,
+        7.790072615033001
+      ],
+      "maximumAddedSlope": 0.47435224249868246,
+      "turf": [
+        0.1340986078300916,
+        0.2340674626237063,
+        0.02601326939663973
+      ],
+      "soil": [
+        0.09536629094062855,
+        0.06325398760964382,
+        0.03072485484849097
+      ],
+      "mature": [
+        0.10682840690508416,
+        0.12482646433003475,
+        0.018976073680600412
+      ],
+      "straw": [
+        0.18435673210350262,
+        0.15109559515894702,
+        0.03167244566363833
+      ],
+      "terrainTriangles": 536648,
+      "maxGroundHeightErrorMetres": 0.0001567199284409071,
+      "maxHabitatError": 1.4623385364842534e-06
+    }
+  },
+  "voxelInjection": {
+    "test": "tools/qa/voxel-light.mjs",
+    "maximumDirectLinearError": 0.0001461661016143867
+  },
+  "screenshot": {
+    "requestDeadlineSeconds": 12,
+    "tests": [
+      "tools/qa/screenshot.mjs",
+      "tools/qa/startup-fallback.mjs"
+    ],
+    "browserFallbackDownload": "Observed a completed frame download in the browser preview. Live WebGPU canvas capture was exercised at the request-state level only."
+  },
+  "limits": [
+    "Hardware frame pacing and live browser GPU rendering were not measured in this environment.",
+    "The explicitly simulated tree population is selectable from 30,000 to 250,000. Outer hills are aggregate crowns.",
+    "WebGL2 grass still shows measurable aliasing during camera motion. See movingRasterReference in field-verification.json.",
+    "At close range some leaf edges and grass stems reveal their geometry. Distant pasture is an aggregate plant model."
+  ],
+  "files": {
+    "evidence/backlit-ridge-comparison.jpg": "da5186e7056f46ecda82fbeba4ffe739114154ff21819639d53060241f0c148b",
+    "evidence/field-verification.json": "c74dcd3651aa44ead3f517dec58de140f3e7d5e718dcf000ac37bcb8a0a9d6fd",
+    "evidence/flicker-comparison.mp4": "e6d8c1d33bd6a5cadfd7d946e3d189844ebe2c9f8ceaf4436616e40250eb5389",
+    "evidence/lighting-reference.jpg": "012debf91aa569ad0e269307787e56656958827f0c59c39c670940bc1615ae11",
+    "evidence/lighting-reference.json": "2db3ffdbb7ddbc82dc30b4b7f8484cc20db43faa00a5e40001c9e1bd1eaccacf",
+    "evidence/meadow-1080.jpg": "9fa500f34121a4fe04d1112787538080aea50486220c7450f055869bdab0a5b9",
+    "evidence/meadow-back-1080.jpg": "aee8c81677efe493157d765f6fd7bc40b0678c05fcf95c789060188455753987",
+    "evidence/meadow-before-after.jpg": "7b2d74fe7cac5927d08a0721fd5f958056a77a1b1980c006c89359d08185f9d1",
+    "evidence/meadow-botany-1080.jpg": "33de9b00afd24bb73de054a99b2ec145e0cdb8d5d2a63904eed111c08e657760",
+    "evidence/meadow-front-1080.jpg": "7b0519f557a50f32b923d60cbbf64010fd7eebe09ba8506bfe12d7201d431757",
+    "evidence/meadow-motion.mp4": "caf52c4d13f316aefca9b0f1f0c0e0f9829e00ba63e1ec66abad1f0908d33ae5",
+    "evidence/meadow-shade-1080.jpg": "b99fa857c22db815782b0713d5e66d1ecc12135f5c86dff8a6a2a95578c8cf1b",
+    "evidence/raster-detail-comparison.jpg": "99171adf1e766e8cea34c2961e66643f63f15c549c4e272e97a171e18c92c423",
+    "evidence/stand-glint.json": "318dbcb184478fa1aff0d4f9028eeecdac6457b20b102997adfb032ddddd49f1",
+    "evidence/webgpu-meadow.jpg": "8044b910a953639c0d0d8716ef9749fb34be1abc65c0d8bb174e5baffe8b6b27",
+    "evidence/webgpu-verification.json": "66d87281826da1743dc25b05d5cff3062891043a05a9a7627b090d7fcd56cbb2",
+    "evidence/wind-detail-front.jpg": "faf984b6c541fc20bcc3300c6048a11621893b21f30e8118aa610bba6a2bd769",
+    "evidence/wind-history.json": "c66787d10c4a02c828d58ce06afbad6db047e78e6cc968bedb483a6c0a9392cc"
+  }
+}

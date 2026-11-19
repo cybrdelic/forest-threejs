@@ -1,0 +1,485 @@
+{
+  "renderer": "Blender 4.3.2 Cycles CPU",
+  "raster": "production WebGL2 GLES release draw replay on native Mesa, 4x MSAA",
+  "shadowMode": "release near/wide PCF plus measured crown source transfer",
+  "calibration": {
+    "front": {
+      "v8": {
+        "pixels": 8219,
+        "rasterMedianLuma": 26.5,
+        "cyclesMedianLuma": 40.72,
+        "meanAbsLumaError": 17.51,
+        "meanSignedLumaError": -15.6
+      },
+      "revisedLighting": {
+        "pixels": 8219,
+        "rasterMedianLuma": 38.07,
+        "cyclesMedianLuma": 40.72,
+        "meanAbsLumaError": 13.04,
+        "meanSignedLumaError": -4.58
+      }
+    },
+    "back": {
+      "v8": {
+        "pixels": 8219,
+        "rasterMedianLuma": 23.36,
+        "cyclesMedianLuma": 28.88,
+        "meanAbsLumaError": 10.47,
+        "meanSignedLumaError": -6.31
+      },
+      "revisedLighting": {
+        "pixels": 8219,
+        "rasterMedianLuma": 32.36,
+        "cyclesMedianLuma": 28.88,
+        "meanAbsLumaError": 10.53,
+        "meanSignedLumaError": 2.37
+      }
+    },
+    "side": {
+      "v8": {
+        "pixels": 8219,
+        "rasterMedianLuma": 24.36,
+        "cyclesMedianLuma": 30.26,
+        "meanAbsLumaError": 11.61,
+        "meanSignedLumaError": -7.37
+      },
+      "revisedLighting": {
+        "pixels": 8219,
+        "rasterMedianLuma": 33.64,
+        "cyclesMedianLuma": 30.26,
+        "meanAbsLumaError": 11.03,
+        "meanSignedLumaError": 1.11
+      }
+    }
+  },
+  "comparisons": {
+    "crown-front": {
+      "pixels": 8058,
+      "rasterMedianLuma": 37.64,
+      "cyclesMedianLuma": 39.88,
+      "meanAbsLumaError": 12.18,
+      "meanSignedLumaError": -4.54,
+      "geometry": "jacaranda",
+      "triangles": 287558,
+      "camera": [
+        29,
+        148.47849790117516,
+        -460
+      ],
+      "target": [
+        13.6,
+        163.23898315429688,
+        -465.7
+      ],
+      "size": [
+        256,
+        192
+      ],
+      "sunElevation": 48,
+      "sunAzimuth": 345,
+      "VFoV": 50,
+      "wind": 0,
+      "samplesPerPixel": 96,
+      "maxBounces": 6,
+      "sha256": {
+        "raster-front.png": "7054742c2d472671d1b1fad8ed8e2a122e6bc81845e6f455337dc116067ca903",
+        "cycles-front.exr": "cfb70beb313bd638de451d5ec986b39cf6a10de5df5c0f17aca8d6b92d6a2832",
+        "mask-front.png": "5bdfe69f4f869ee73e230238fed59e8819d4b3139907a14ea1c78aa4932f2915",
+        "scene.json": "d9a40084f6b4894f3ae8408c3e14de7f607c9877e13224dbdf6bc53643b5eb22"
+      },
+      "sourceInstanceIndex": 1,
+      "otherTreeCountWithin40m": 0,
+      "rasterDeepShade": {
+        "pixels": 1715,
+        "rasterMedianLuma": 18.71,
+        "cyclesMedianLuma": 28.03,
+        "meanAbsLumaError": 11.92,
+        "meanSignedLumaError": -10.32
+      },
+      "rasterDirectlyLit": {
+        "pixels": 56,
+        "rasterMedianLuma": 74.6,
+        "cyclesMedianLuma": 70.2,
+        "meanAbsLumaError": 12.48,
+        "meanSignedLumaError": 6.01
+      },
+      "lightSourceFraction": {
+        "Solar": 0.6459,
+        "Sky": 0.3541
+      },
+      "indirectFraction": 0.5082,
+      "runtimeSourceSHA256": {
+        "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+        "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+        "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+        "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+        "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+        "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+        "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+        "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+        "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+        "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+        "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+        "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+        "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+        "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+        "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+        "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+        "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+        "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+        "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+        "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+        "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+        "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+        "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+        "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+        "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+        "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+        "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+        "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+        "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+        "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+        "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+        "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+        "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+        "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+        "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+        "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+        "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+        "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+        "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+        "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+        "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+        "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+      },
+      "normalAssetSHA256": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6"
+    },
+    "crown-back": {
+      "pixels": 8058,
+      "rasterMedianLuma": 32.14,
+      "cyclesMedianLuma": 28.82,
+      "meanAbsLumaError": 10.25,
+      "meanSignedLumaError": 2.31,
+      "geometry": "jacaranda",
+      "triangles": 287558,
+      "camera": [
+        29,
+        148.47849790117516,
+        -460
+      ],
+      "target": [
+        13.6,
+        163.23898315429688,
+        -465.7
+      ],
+      "size": [
+        256,
+        192
+      ],
+      "sunElevation": 48,
+      "sunAzimuth": 165,
+      "VFoV": 50,
+      "wind": 0,
+      "samplesPerPixel": 96,
+      "maxBounces": 6,
+      "sha256": {
+        "raster-back.png": "59b7b676f2452678e7c3126ecff8f971b56d6a47cb69d849062e4dafc628cf88",
+        "cycles-back.exr": "12938dd1a113884e0ded391eeeaa3fcbd5d17b6970c49df68d14817300d25b32",
+        "mask-back.png": "71756be8ded2c802daff2f6460b3496d97de008b370d06c42f4c86ece79791f6",
+        "scene.json": "d9a40084f6b4894f3ae8408c3e14de7f607c9877e13224dbdf6bc53643b5eb22"
+      },
+      "sourceInstanceIndex": 1,
+      "otherTreeCountWithin40m": 0,
+      "rasterDeepShade": {
+        "pixels": 3906,
+        "rasterMedianLuma": 22.85,
+        "cyclesMedianLuma": 25.28,
+        "meanAbsLumaError": 7.87,
+        "meanSignedLumaError": -3.46
+      },
+      "rasterDirectlyLit": {
+        "pixels": 11,
+        "rasterMedianLuma": 82.27,
+        "cyclesMedianLuma": 61.28,
+        "meanAbsLumaError": 20.4,
+        "meanSignedLumaError": 16.42
+      },
+      "lightSourceFraction": {
+        "Solar": 0.5474,
+        "Sky": 0.4526
+      },
+      "indirectFraction": 0.5592,
+      "thinTransmissionAblation": {
+        "pairedPixels": 7553,
+        "dropInMeanLinearLuminanceFraction": 0.3822,
+        "samplesWithTransmission": 96,
+        "samplesWithoutTransmission": 64
+      },
+      "runtimeSourceSHA256": {
+        "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+        "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+        "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+        "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+        "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+        "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+        "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+        "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+        "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+        "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+        "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+        "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+        "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+        "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+        "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+        "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+        "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+        "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+        "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+        "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+        "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+        "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+        "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+        "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+        "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+        "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+        "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+        "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+        "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+        "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+        "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+        "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+        "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+        "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+        "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+        "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+        "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+        "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+        "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+        "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+        "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+        "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+      },
+      "normalAssetSHA256": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6"
+    },
+    "crown-side": {
+      "pixels": 8058,
+      "rasterMedianLuma": 33.0,
+      "cyclesMedianLuma": 29.48,
+      "meanAbsLumaError": 10.26,
+      "meanSignedLumaError": 1.55,
+      "geometry": "jacaranda",
+      "triangles": 287558,
+      "camera": [
+        29,
+        148.47849790117516,
+        -460
+      ],
+      "target": [
+        13.6,
+        163.23898315429688,
+        -465.7
+      ],
+      "size": [
+        256,
+        192
+      ],
+      "sunElevation": 48,
+      "sunAzimuth": 255,
+      "VFoV": 50,
+      "wind": 0,
+      "samplesPerPixel": 96,
+      "maxBounces": 6,
+      "sha256": {
+        "raster-side.png": "7772257a54a1cc4f303b77453e8d465a995154c2e568feb948316fe80bec402d",
+        "cycles-side.exr": "31bc94af2e58f5c863ec76a9680b20ec7812f9da80178353b0f9ed6dcf66ae94",
+        "mask-side.png": "e457a5de3df38f1b3a5aa423bc53a1cff9a29ced4848acfd6786218301f329d1",
+        "scene.json": "d9a40084f6b4894f3ae8408c3e14de7f607c9877e13224dbdf6bc53643b5eb22"
+      },
+      "sourceInstanceIndex": 1,
+      "otherTreeCountWithin40m": 0,
+      "rasterDeepShade": {
+        "pixels": 3501,
+        "rasterMedianLuma": 20.07,
+        "cyclesMedianLuma": 22.56,
+        "meanAbsLumaError": 7.71,
+        "meanSignedLumaError": -3.92
+      },
+      "rasterDirectlyLit": {
+        "pixels": 19,
+        "rasterMedianLuma": 83.99,
+        "cyclesMedianLuma": 68.28,
+        "meanAbsLumaError": 19.41,
+        "meanSignedLumaError": 19.41
+      },
+      "lightSourceFraction": {
+        "Solar": 0.5687,
+        "Sky": 0.4313
+      },
+      "indirectFraction": 0.5155,
+      "runtimeSourceSHA256": {
+        "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+        "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+        "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+        "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+        "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+        "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+        "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+        "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+        "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+        "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+        "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+        "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+        "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+        "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+        "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+        "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+        "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+        "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+        "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+        "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+        "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+        "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+        "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+        "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+        "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+        "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+        "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+        "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+        "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+        "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+        "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+        "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+        "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+        "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+        "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+        "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+        "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+        "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+        "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+        "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+        "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+        "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+      },
+      "normalAssetSHA256": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6"
+    },
+    "grass-front": {
+      "pixels": 3844,
+      "rasterMedianLuma": 116.99,
+      "cyclesMedianLuma": 123.27,
+      "meanAbsLumaError": 16.5,
+      "meanSignedLumaError": -5.89,
+      "geometry": "release meadow",
+      "triangles": 236560,
+      "camera": [
+        -170,
+        244.58097936845206,
+        207
+      ],
+      "target": [
+        -169.82,
+        243.2214259894747,
+        206.74
+      ],
+      "size": [
+        192,
+        144
+      ],
+      "sunElevation": 48,
+      "sunAzimuth": 345,
+      "VFoV": 50,
+      "wind": 0,
+      "samplesPerPixel": 96,
+      "maxBounces": 6,
+      "sha256": {
+        "raster-front.png": "ea32745f671c95ede5547572ef2b3730eb5f6969b2ba0f574f42aed920ce665e",
+        "cycles-front.exr": "4e2baf71051e832d3964b9bd02e3f79d3b766bd3d342de1bd43543e0beb5f556",
+        "mask-front.png": "1f7adab2db3fdca45d6dbdebbbc6452c903d5cfe712dd771115e034bc3ba3a4f",
+        "scene.json": "d27346fa24e9717c855c1205230e3f2f5017f03ac892fba155db7781bdad0812"
+      },
+      "rootCount": 241,
+      "rasterDeepShade": {
+        "pixels": 43,
+        "rasterMedianLuma": 57.35,
+        "cyclesMedianLuma": 49.81,
+        "meanAbsLumaError": 15.24,
+        "meanSignedLumaError": 2.65
+      },
+      "rasterDirectlyLit": {
+        "pixels": 1585,
+        "rasterMedianLuma": 133.91,
+        "cyclesMedianLuma": 134.53,
+        "meanAbsLumaError": 10.34,
+        "meanSignedLumaError": -0.72
+      },
+      "lightSourceFraction": {
+        "Solar": 0.6892,
+        "Sky": 0.3108
+      },
+      "indirectFraction": 0.045,
+      "thinTransmissionAblation": {
+        "pairedPixels": 3695,
+        "dropInMeanLinearLuminanceFraction": 0.0359,
+        "samplesWithTransmission": 96,
+        "samplesWithoutTransmission": 64
+      },
+      "runtimeSourceSHA256": {
+        "aggregate-canopy.js": "259a41f1dd9f017cbbd36ff56e44855ab522338ccee60735549f4c971acb12cc",
+        "antialias.js": "cad5a2c41bb8c188eb1c756655c3d0f3927e5a564aba9bf7f1389de2b67c9812",
+        "assets/outer-ridges.js": "620451417fd511656f7daba1ead74fa89e2f7fdbeaa70de19476aa7d003fbacc",
+        "controls.js": "ae516b2d07fb482ff7226faa36f767f7df3c05fed3dfc567649242cc592ad009",
+        "crown-light.js": "a99d5d701cd82f75333b02115960bfe86f96838cba9943ee1cf05531636adf5c",
+        "dielectric-dfg.js": "5c047069ed6c3b11b0b0e47e24273e456f8f5366dbeaae27022746dd54b0d166",
+        "fallback.js": "fa44ba4de3922721bb741ba1acee7b82ec2a6e0bc7c166cf43b08118f214189f",
+        "foliage-motion.js": "262aace4663d187ecadd783a8e02bdd7ca5452bd838a8d60e2485c6475a55b85",
+        "forest-shadow.js": "0d8d1e8997eb03d6060ce69496a940e5448d1904006c2079763f72b3a8382e87",
+        "geometry-assets.js": "9910b5dbd012dbefcd6559f4e72903802c86148298169a53b60bb3ff00a51fa6",
+        "gl-coverage-target.js": "e17072f783a3683cd904ead264feb9ec05542f5a4328f43dfbf942c68f0521a4",
+        "hedgerow-worker.js": "c767eb8595ac4dcfe413c1002ffcc8699987e97b5da887d9f222b0f3caf32acb",
+        "hedgerow.js": "62d8afd780c1e7fda76fc19651560e7b9e83fb96cef37ca6866eb2f14b5902de",
+        "impostors.js": "d5589f37fbac736fd93b0b43be15352ab2a48be8c0dbf388491b0e1e520c07d1",
+        "landscape.js": "28d91df58b393164c7bc895da14178ceb4062425197a0f8a5bf651a09d705d9d",
+        "main.js": "72bace6e958e355a742d86c363525733827ab7f3e78d9aa1acfc170f5c480b26",
+        "materials.js": "34fcbefe876ddc5ad3e8027ff19fc1930d8b3e1e7eeb7fdb11c165c250d004c9",
+        "math.js": "5728612115348ab086756234c12ac3dc2697da29002894e4e932caab73d61209",
+        "meadow-botany.js": "0d0f1a7a4c2f06495f7557adafc4bc6e598823ed309bf84ade07fc7eaf95f775",
+        "meadow-cull.js": "ce5689651cfd7f2253bc1b4439800a170b1d5218b5885ca5d2f123986c8d60cd",
+        "meadow-gaps.js": "c4b9320badbecd827bb225954692bf6997e49205a45fec2f108eb86df1fc25e2",
+        "meadow.js": "04e0660098a546d118f172e86ec17e10518d47a21fca105ed52ca361751a08b9",
+        "meshlets.js": "3147a262830f929077c810d391d476304a3132e51e7a80533d068233fd753f56",
+        "pasture-fields.js": "e3e73a1b1a671cc359ec7c5fecc77516e2772c3e4c2af983deb1910b147c254f",
+        "plant-shadow.js": "13230d6901606f28c8e600564700fa9e02a71d617a79050488caa77fc9a369c6",
+        "rendered-views.js": "d149e5bf23e95b1f987cf7672046d1ff980c7a69d481b58addfa7709c514bb78",
+        "sample-coverage.js": "fc5b43798689a3d9f75656f905fcf2bebb9ae173aca9d34f8a1869eec0bcae86",
+        "screenshot.js": "fdca81376eaefa5dd832599b0431ca3d6bdc155d9a9ad6e2badf108b86fc6551",
+        "shaders.js": "bf3a3fea670eb4ab1e74da9ea6ebafc8d8763032a96bbdfbd69fb181109ba573",
+        "sky-detail.js": "e795197a6744310075325ef9ab9f82c1e2dcf150f9822a2c78ad6b0893345b1a",
+        "sky-orientation.js": "5cfc7ec861e425e1e7c89d7e3dc0f7fe560a9744f5efae41d4150a88ba731551",
+        "stand-envelope.js": "928d452b3ecbb44232b3bb8e4783b38b6cdbe4230d5d41b6a47252b59d6c7844",
+        "stand-relief.js": "783bc876793f82299e01c20eefdedf0b305f2d4e11e96865b605c3ce82d62dd4",
+        "stream-worker.js": "123f5c5b1d5d2d8814cbcefb7bf2b43595334d099ed2f2f6c45dce2bc9f9813d",
+        "streaming.js": "7fd5ff38480874498bb74dc8a2b46b0763bfe42ca15ff53920e34536d3f29ab5",
+        "surface-light.js": "91905e18ff9f2b905c9039cbec4fa5f800ec97bc6c2ce44febb901e24675e213",
+        "temporal.js": "868b1df88edc1db9bb8eaf2fa8590957642dfe51ff8eac4e697bba65f706e9dd",
+        "terrain-surface.js": "0998313d5f67e622ff2d2e2f4abd773f10490a83213106887608866f67bed479",
+        "terrain-visibility.js": "cbb812abcf1e4b0840cb6081b81e68b160a791057136842515aac691ed34d4da",
+        "tree-lod.js": "1aa470ba0ed8d83533cd4cb4c5408fe61abc095ca1db8c957c58594e457f5124",
+        "vegetation.js": "d55862953e0ee40b69cd69d64c7b8255b91c83b4dc19ffd73a6aaa3475a53e63",
+        "weather-light.js": "a43c6a01feb0c1619f083f78a7cca4706e92f11c56e61c13a91ab84c79f4c1f6"
+      },
+      "normalAssetSHA256": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6"
+    }
+  },
+  "method": [
+    "Each comparison uses the actual near tree mesh or the 3.5 m radius seeded meadow around the test viewpoint. Cycles traces up to six surface bounces in a rotated 2K scene HDR with its solar disk separated into a finite 0.53 degree sun. The direct source is scaled by the local photographic cloud transmission at the centre of the patch. The raster uses the same field at every fragment.",
+    "The meadow export executes the live GLES vertex shader in transform feedback and retains positions, normals, tint, material layer and UV. Local terrain uses the height query and approximate local soil/vegetation reflectance for secondary rays. The tree case uses the isolated specimen plus a 128 m terrain tile. It excludes distant forest and aerial transport. The complete valley is not path-traced.",
+    "The Cycles thin-surface shader uses the resident linear reflected pigment, rough dielectric specular, and bounded diffuse transmission (0.32 of tree pigment, 0.50 of meadow pigment, less the surface Fresnel budget). These are assumed material parameters, not laboratory measurements. Independent diffuse lighting, ray-traced self-shadow, and leaf-to-leaf bounces are enabled.",
+    "Images show the Cycles vegetation over its original raster background. The error image excludes background, silhouettes, wood and mixed pixels: photometric comparisons require fully leaf-covered raster samples and Cycles alpha at least 0.98. Luminance metrics use the release filmic curve, gamma 1/2.2 and Rec.709 weights in 0\u2013255 display units.",
+    "Light-source and indirect fractions are computed in scene-linear space from Cycles light groups and color-weighted direct/indirect diffuse, glossy and transmission passes. Cycles includes its translucent closure in diffuse passes. The separate ablation measures the effect of disabling that closure including changed subsequent bounces. It is a finite-sample estimate.",
+    "Calibration holds the V8 mesh and camera fixed before applying the lighting changes. The final comparisons use the release terrain, placement and botanical changes; their camera coordinates follow the terrain elevation. Curved normal maps, texture sampling, stochastic cutout and limited secondary-scene geometry contribute residual differences."
+  ],
+  "releaseProvenance": {
+    "captured": "Exact WebGL vegetation lighting at the recorded source hashes listed per crop. The paired images and measured leaf pixels precede the subsequent far-stand-only direct-glint correction.",
+    "correctionRecord": "stand-glint.json",
+    "qualifiedSurface": "The corrected material is the outer aggregate forest. This study measures only the near tree and explicit meadow materials."
+  }
+}

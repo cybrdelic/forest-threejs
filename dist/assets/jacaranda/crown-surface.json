@@ -1,0 +1,46 @@
+{
+  "source": "https://polyhaven.com/a/jacaranda_tree",
+  "license": "CC0",
+  "sourceShootCount": 116084,
+  "distinctUVTemplates": 8,
+  "coverage": "Photographic alpha times each original shoot UV triangle mask.",
+  "directVisibility": "Six azimuths at 36 degrees plus zenith integrated through the full-source 96^3 leaf-area density.",
+  "lods": {
+    "near": {
+      "shoots": 116084,
+      "vertices": 508160,
+      "triangles": 287558
+    },
+    "mid": {
+      "shoots": 13981,
+      "vertices": 59889,
+      "triangles": 34764
+    }
+  },
+  "silhouetteValidation": {
+    "reference": "Alpha atlas rasterized from the full Poly Haven tree, including opaque wood.",
+    "method": "Offscreen GLES, eight azimuths at two elevations. Render 512 pixels per view, then average 2x2 samples into 256 pixels per view. Compare 16 concatenated coverage masks. The reduced models use their release diffuse mip chains with trilinear filtering and alpha cutoff 0.5.",
+    "metrics": "coverageRatio is sum(test)/sum(reference). softIoU is sum(pixelwise minima)/sum(pixelwise maxima).",
+    "limits": "Measures projected silhouette and holes at these views/scales. It excludes lighting, pigment, animation, closer inspections and camera-dependent motion. Medium Jacaranda coverage is approximately 19% above the reference.",
+    "near": {
+      "v5": {
+        "coverageRatio": 1.38392,
+        "softIoU": 0.62509
+      },
+      "v6": {
+        "coverageRatio": 0.99024,
+        "softIoU": 0.77556
+      }
+    },
+    "mid": {
+      "v5": {
+        "coverageRatio": 1.65133,
+        "softIoU": 0.51873
+      },
+      "v6": {
+        "coverageRatio": 1.1941,
+        "softIoU": 0.63516
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "size": 96,
+  "minimum": [
+    -13.92025089263916,
+    -1.0,
+    -10.953813552856445
+  ],
+  "extent": [
+    26.417049407958984,
+    21.468875885009766,
+    21.154574394226074
+  ],
+  "decodeScale": 24.32344323217318,
+  "encoding": "R8_UNORM * decodeScale, X fastest / Y / Z",
+  "units": "square metres of projected alpha-weighted leaf surface per cubic metre",
+  "source": "https://polyhaven.com/a/jacaranda_tree",
+  "license": "CC0",
+  "sourceLeafTriangles": 2402434,
+  "sourceLeafAreaSquareMetres": 1293.4817562103271,
+  "decodedLeafAreaSquareMetres": 1284.4559161239913,
+  "relativeAreaError": -0.006977941546527849,
+  "smoothing": "Gaussian sigma 1.1 voxels, preserving integrated leaf area before quantization",
+  "clipping": "99.99 percentile of nonzero density, rather than one outlier setting all quantization precision",
+  "extinction": "Runtime Beer-Lambert k=0.5 along the current model-space sunlight direction",
+  "limits": "Centroid UV alpha quadrature and voxel smoothing approximate individual leaves; branch wood is excluded."
+}

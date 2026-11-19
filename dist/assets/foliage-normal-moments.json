@@ -1,0 +1,13 @@
+{
+  "sha256": "788b9da0960ccc0f247d5c3871230a855ccefdbf44cdfdca3344b7fa89e47fa6",
+  "layout": "coverage-weighted XYZ first moment with flat +Z in uncovered area, unbiased fractional area in alpha",
+  "layers": {
+    "3": 0.96611,
+    "4": 0.92052,
+    "5": 0.8124,
+    "6": 0.80575,
+    "7": 0.67241,
+    "8": 0.94414
+  },
+  "reproduce": "python tools/lighting/normal-moments.py"
+}

@@ -1,0 +1,58 @@
+{
+  "name": "oak",
+  "width": 2048,
+  "height": 512,
+  "columns": 8,
+  "rows": 2,
+  "cellSize": 256,
+  "projectionSize": [
+    21.568952560424805,
+    20.948593139648438
+  ],
+  "center": [
+    0.0,
+    7.974296569824219,
+    0.0
+  ],
+  "elevationRows": [
+    0.4363323129985824,
+    0.0
+  ],
+  "source": "https://polyhaven.com/a/tree_small_02",
+  "license": "CC0",
+  "sourceMesh": "Full unreduced original geometry with official photographic diffuse PNG/JPEG and authored embedded RGBA8 leaf alpha",
+  "colorSpace": "linear RGBA8 albedo, alpha 2x supersampled coverage",
+  "normalSpace": "Model-space normal encoded [0,1]; vector length retains unresolved normal variance. Alpha stores cosine-weighted upper-hemisphere visibility through the source leaf area density at the reconstructed surface.",
+  "positionSpace": "model XYZ normalized within sourceBounds; alpha leaf fraction (1 leaf, 0 wood)",
+  "triangles": 2062487,
+  "sourceBounds": [
+    [
+      -4.581477165222168,
+      0.0,
+      -4.839193820953369
+    ],
+    [
+      5.6269731521606445,
+      15.948593139648438,
+      10.184475898742676
+    ]
+  ],
+  "leafBounds": [
+    [
+      -4.581477165222168,
+      5.188576698303223,
+      -4.839193820953369
+    ],
+    [
+      5.6269731521606445,
+      15.948593139648438,
+      10.184475898742676
+    ]
+  ],
+  "skyAperture": {
+    "sourceDensitySize": 96,
+    "cosineWeightedDirections": 64,
+    "extinction": 0.5,
+    "details": "tools/trees/bake-sky-aperture.py"
+  }
+}

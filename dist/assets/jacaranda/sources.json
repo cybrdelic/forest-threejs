@@ -1,0 +1,28 @@
+{
+  "name": "Poly Haven Jacaranda Tree",
+  "source_url": "https://polyhaven.com/a/jacaranda_tree",
+  "source_metadata_url": "https://api.polyhaven.com/info/jacaranda_tree",
+  "license": "CC0",
+  "license_url": "https://polyhaven.com/license",
+  "author": "Rico Cilliers",
+  "guidance": "Rob Tuytel",
+  "units": "metres",
+  "source_scale": 1,
+  "source_ground_offset": 0.146615132689476,
+  "source_triangle_count": 3863832,
+  "foliage_bounds": [
+    [
+      -12.892126083374023,
+      2.2524654865264893,
+      -9.905109405517578
+    ],
+    [
+      11.45836353302002,
+      19.446115493774414,
+      9.1150541305542
+    ]
+  ],
+  "near_mid_conversion": "Source-connected shoots with the original UV triangle masks and photographed alpha. Each surface fits the authored source pose, curvature and normal field. Every source shoot is present at near LOD. Mid LOD selects deterministic shoots and compensates their projected area. QEM-reduced source branches and trunks are retained.",
+  "runtime_format": "TRV6 little-endian 32-byte header (magic, uint32 vertex count, float32 bounds minimum and extent), then 22 bytes per vertex (3xUNORM16 xyz, 2xSNORM8 octahedral normal, 9 visibility bytes, uint8 material ID, 2xUNORM16 material parameters), and separate uint32 indices.",
+  "crown_surface": "crown-surface.json"
+}

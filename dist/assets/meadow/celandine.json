@@ -1,0 +1,50 @@
+{
+  "name": "celandine",
+  "sourceAsset": "celandine_01",
+  "source_url": "https://polyhaven.com/a/celandine_01",
+  "source_metadata_url": "https://api.polyhaven.com/files/celandine_01",
+  "license": "CC0",
+  "license_url": "https://polyhaven.com/license",
+  "authors": {
+    "Rob Tuytel": "Photography",
+    "Rico Cilliers": "modeling"
+  },
+  "vertex_stride_floats": 12,
+  "vertex_layout": [
+    "position.xyz",
+    "normal.xyz",
+    "white linear tint.rgb",
+    "material",
+    "source UV.u",
+    "source UV.v"
+  ],
+  "material": 9,
+  "array_layer": 7,
+  "vertices": 4235,
+  "triangles": 4301,
+  "bounds": [
+    [
+      -0.12008963525295258,
+      0.0,
+      -0.10453974455595016
+    ],
+    [
+      0.13705752789974213,
+      0.17558737099170685,
+      0.08180022984743118
+    ]
+  ],
+  "conversion": "Original authored source geometry, original photographic UVs, native metre scale. Ground each individual specimen, ignore catalog-layout node translations, rotate/place authored variants into ground patch. No synthetic blade replacement or leaf-area enlargement. Diffuse PNG embedded RGBA8 alpha retained. Source RGB nearest-dilated only outside alpha mask. Normal GL source renormalized after512pxresize.",
+  "components": [
+    {
+      "sourceMesh": 2,
+      "sourceTriangleCount": 4301,
+      "placement": [
+        0,
+        0
+      ],
+      "yaw": 0
+    }
+  ],
+  "alphaOpaqueCoverage": 0.4040966033935547
+}

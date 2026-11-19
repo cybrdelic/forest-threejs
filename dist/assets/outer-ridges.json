@@ -1,0 +1,28 @@
+{
+  "dataset": "Mapzen Terrain Tiles",
+  "attribution": "Mapzen, U.S. Geological Survey and other elevation contributors. See the dataset attribution list.",
+  "registry": "https://registry.opendata.aws/terrain-tiles/",
+  "attribution_url": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+  "source_camera_latitude": 35.52318869742584,
+  "source_camera_longitude": -83.68188929775128,
+  "vertical_scale": 0.7374267642,
+  "output_spacing_metres": 32.5,
+  "sources": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/12/1095/1614.png",
+      "sha256": "13226f6d7396ef70c49ead59898fedd541251dbb0991038049e40502c09c082a"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/12/1096/1614.png",
+      "sha256": "459d03feb563c84de80d543bfae854504671af4cc55a91b21c2c4d184ed961c8"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/12/1095/1615.png",
+      "sha256": "d45bf108f9e9320ff6391df9ac454dd6ca9dec42e685b157fa1ab4376d3981d2"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/12/1096/1615.png",
+      "sha256": "a2b09e6e8d987b02272e0c803cba3bbef74a21293d8e2d50a0b9367ff1e93a95"
+    }
+  ]
+}

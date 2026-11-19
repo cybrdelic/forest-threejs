@@ -1,0 +1,46 @@
+{
+  "source": "https://polyhaven.com/a/tree_small_02",
+  "license": "CC0",
+  "sourceShootCount": 30250,
+  "distinctUVTemplates": 16,
+  "coverage": "Photographic alpha times each original shoot UV triangle mask.",
+  "directVisibility": "Six azimuths at 36 degrees plus zenith integrated through the full-source 96^3 leaf-area density.",
+  "lods": {
+    "near": {
+      "shoots": 30250,
+      "vertices": 200971,
+      "triangles": 160623
+    },
+    "mid": {
+      "shoots": 11389,
+      "vertices": 52081,
+      "triangles": 31301
+    }
+  },
+  "silhouetteValidation": {
+    "reference": "Alpha atlas rasterized from the full Poly Haven tree, including opaque wood.",
+    "method": "Offscreen GLES, eight azimuths at two elevations. Render 512 pixels per view, then average 2x2 samples into 256 pixels per view. Compare 16 concatenated coverage masks. The reduced models use their release diffuse mip chains with trilinear filtering and alpha cutoff 0.5.",
+    "metrics": "coverageRatio is sum(test)/sum(reference). softIoU is sum(pixelwise minima)/sum(pixelwise maxima).",
+    "limits": "Measures projected silhouette and holes at these views/scales. It excludes lighting, pigment, animation, closer inspections and camera-dependent motion.",
+    "near": {
+      "v5": {
+        "coverageRatio": 0.74066,
+        "softIoU": 0.71243
+      },
+      "v6": {
+        "coverageRatio": 1.00837,
+        "softIoU": 0.80676
+      }
+    },
+    "mid": {
+      "v5": {
+        "coverageRatio": 0.76154,
+        "softIoU": 0.63843
+      },
+      "v6": {
+        "coverageRatio": 1.0449,
+        "softIoU": 0.73273
+      }
+    }
+  }
+}
